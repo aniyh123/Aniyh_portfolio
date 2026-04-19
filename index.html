@@ -13,3 +13,11 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+<script>
+  (function() {
+    const theme = localStorage.getItem('theme');
+    if (theme !== 'light') {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+</script>
