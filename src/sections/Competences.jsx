@@ -7,7 +7,7 @@ import js from "../assets/js.png";
 import tailwind from "../assets/tailwind.png";
 import postgres from "../assets/postgres.png";
 import express from "../assets/express.png";
-import uml from "../assets/uml.png";
+import uml from "../assets/Uml.png";
 import agile from "../assets/agile.png";
 import mysql from "../assets/mysql.png";
 import node from "../assets/node2.png";
@@ -20,7 +20,7 @@ import kubernete from "../assets/kubernete.png";
 import merise from "../assets/merise.png";
 import vue from "../assets/vue.png";
 import python from "../assets/Python.jpg";
-import reactnative from "../assets/react-native-2-logo.png";
+import reactnative from "../assets/React-native-2-logo.png";
 
 const skills = [
   // Frontend
