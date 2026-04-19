@@ -144,7 +144,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden px-[6%] bg-white text-black dark:bg-[#0B0B0F] dark:text-white transition-colors duration-500 pt-30">
+    <section className="relative min-h-screen flex items-center overflow-hidden px-[6%] bg-white text-black dark:bg-[#0B0B0F] dark:text-white transition-colors duration-500 pt-28 md:pt-36">
       
       {/* Grande photo de fond à droite (uniquement visible sur desktop) */}
       <div className="absolute right-0 bottom-0 w-1/2 lg:w-[55%] h-full z-0 hidden md:block ">
