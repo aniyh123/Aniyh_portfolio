@@ -331,7 +331,7 @@ function ProjectCard({ project, index, onOpen }) {
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 text-white text-sm font-semibold flex items-center gap-2">
                 <FaArrowRight size={14} />
-                {t("projects_view_details")}
+                {t("projects.view_details")}
               </div>
             </div>
           </div>
