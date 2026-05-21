@@ -182,7 +182,7 @@ export default function Contact() {
       <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   </div>
-  <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl">
+  <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl text-slate-800 dark:text-white">
     {t("contact.titleBefore")} <span className="text-blue-500">{t("contact.highlight")}</span> {t("contact.titleAfter")}
   </h2>
   <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-500 dark:text-slate-400">

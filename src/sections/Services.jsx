@@ -476,7 +476,7 @@ export default function Services() {
             </svg>
           </div>
 
-          <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl">
+          <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl text-slate-800 dark:text-white">
             {lang === "fr" ? "Une expertise complète," : "Complete expertise,"}
             <br />
             <span className="text-blue-500">

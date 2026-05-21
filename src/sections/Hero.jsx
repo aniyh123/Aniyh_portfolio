@@ -325,9 +325,9 @@ export default function Hero() {
   </motion.div>
 )}
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="grid lg:grid-cols-2 gap-12 items-center justify-items-center lg:justify-items-start">
+    <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -337,7 +337,7 @@ export default function Hero() {
               {t("hero_subtitle") || "const developer = { fullstack: true }"}
             </motion.div>
 
-          <motion.h1
+    <motion.h1
   initial={{ opacity: 0, y: 30 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.2 }}
@@ -349,7 +349,7 @@ export default function Hero() {
         {devLetters.map((letter, idx) => (
           <motion.span
             key={`dev-${idx}`}
-            animate={{ color: ["#3b82f6", "#ffffff", "#3b82f6"] }}
+            animate={{ color: ["#2563eb", "#1e293b", "#2563eb"] }}
             transition={{
               duration: 2.5,
               delay: (devLetters.length - 1 - idx) * 0.12,
@@ -366,7 +366,7 @@ export default function Hero() {
         {stackLetters.map((letter, idx) => (
           <motion.span
             key={`stack-${idx}`}
-            animate={{ color: ["#ffffff", "#3b82f6", "#ffffff"] }}
+            animate={{ color: ["#1e293b", "#2563eb", "#1e293b"] }}
             transition={{
               duration: 2.5,
               delay: idx * 0.12,
@@ -386,7 +386,7 @@ export default function Hero() {
         {stackLetters.map((letter, idx) => (
           <motion.span
             key={`stack-${idx}`}
-            animate={{ color: ["#ffffff", "#3b82f6", "#ffffff"] }}
+            animate={{ color: ["#1e293b", "#2563eb", "#1e293b"] }}
             transition={{
               duration: 2.5,
               delay: idx * 0.12,
@@ -403,7 +403,7 @@ export default function Hero() {
         {devLetters.map((letter, idx) => (
           <motion.span
             key={`dev-${idx}`}
-            animate={{ color: ["#3b82f6", "#ffffff", "#3b82f6"] }}
+            animate={{ color: ["#2563eb", "#1e293b", "#2563eb"] }}
             transition={{
               duration: 2.5,
               delay: (devLetters.length - 1 - idx) * 0.12,
@@ -424,7 +424,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-gray-300 max-w-lg mx-auto lg:mx-0 text-base md:text-lg leading-relaxed mb-8"
+              className="text-slate-700 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 text-base md:text-lg leading-relaxed mb-8"
             >
               {t("hero_desc")}
             </motion.p>
