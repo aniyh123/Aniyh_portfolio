@@ -1,21 +1,38 @@
 import { useEffect, useState } from "react";
 
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) setMatches(media.matches);
+    const listener = (e) => setMatches(e.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, [matches, query]);
+
+  return matches;
+}
+
 export default function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hover, setHover] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // Suivre la souris
   useEffect(() => {
+    if (isMobile) return; 
+
     const move = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
-  }, []);
+  }, [isMobile]);
 
-  // Détecter hover sur boutons et liens
   useEffect(() => {
+    if (isMobile) return; 
+
     const add = () => setHover(true);
     const remove = () => setHover(false);
 
@@ -32,7 +49,9 @@ export default function CustomCursor() {
         el.removeEventListener("mouseleave", remove);
       });
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <div
@@ -41,8 +60,8 @@ export default function CustomCursor() {
         transform: `translate(${position.x}px, ${position.y}px)`,
         width: hover ? 40 : 20,
         height: hover ? 40 : 20,
-        background: "linear-gradient(135deg, #7C3AED, #EC4899)",
-        boxShadow: "0 0 20px rgba(124,58,237,0.7)",
+        background: "linear-gradient(135deg, #1e3a8a, #2563eb)",
+        boxShadow: "0 0 20px rgba(37,99,235,0.7)",
         transition: "width 0.2s ease, height 0.2s ease",
       }}
     />

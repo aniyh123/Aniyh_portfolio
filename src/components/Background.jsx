@@ -6,7 +6,7 @@ export default function Background() {
 
       {/* Glow 1 */}
       <motion.div
-        className="absolute w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-30"
+        className="absolute w-72 h-72 bg-hover-500 rounded-full blur-3xl opacity-30"
         animate={{
           x: [0, 200, -100, 0],
           y: [0, -100, 200, 0],
@@ -19,7 +19,7 @@ export default function Background() {
 
       {/* Glow 2 */}
       <motion.div
-        className="absolute w-72 h-72 bg-pink-500 rounded-full blur-3xl opacity-30 right-0"
+        className="absolute w-72 h-72 bg-blue-500 rounded-full blur-3xl opacity-30 right-0"
         animate={{
           x: [0, -200, 100, 0],
           y: [0, 100, -200, 0],

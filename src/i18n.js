@@ -4,29 +4,73 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   fr: {
     translation: {
-        hero_subtitle:"BONJOUR , je m'appelle",
-      hero_title: "Lydivine RAFANANTENANA",
-      hero_desc: "Développeuse Full Stack spécialisée en JavaScript, avec une maîtrise des pratiques DevOps.",
+      hero_subtitle: "BONJOUR , je suis une ",
+      hero_title: "DEVELOPPEUSE FULL STACK",
+      hero_desc: "Spécialisée en JavaScript, avec une solide maîtrise des technologies frontend et backend modernes ainsi que des pratiques DevOps.",
+      hero_quote: "« Je ne me contente pas d'écrire du code. Je traduis vos idées en solutions sur mesure, avec la précision d'un développeur et l'écoute d'un partenaire. »",
       about_title: "À propos",
-     about_desc:"Je m'appelle RAFANANTENANA Nomenjanahary Anicet Lydivine, développeuse full stack passionnée par le développement web et mobile, avec une forte affinité pour JavaScript et ses écosystèmes modernes.\n\n Depuis mes débuts en 2022 à l’École Nationale d’Informatique, je construis des applications concrètes qui allient performance, simplicité et expérience utilisateur. J’aime transformer des idées en solutions fonctionnelles et utiles. Mon expertise couvre l’ensemble du développement full stack, de la conception jusqu’à la mise en production.\n\n Mon approche est à la fois rigoureuse et orientée qualité. J’accorde une grande importance à l’apprentissage continu et à l’amélioration constante de mon travail.Mon objectif est clair : créer des produits fiables, élégants et qui apportent une vraie valeur. Je ne cherche pas seulement à développer des applications, mais à créer des solutions qui font la différence.", 
+      about_voir_plus: "Voir plus",
+      about_voir_moins: "Voir moins",
+      about_desc: "Je m'appelle RAFANANTENANA Nomenjanahary Anicet Lydivine, développeuse full stack passionnée par le développement web et mobile, avec une forte affinité pour JavaScript et ses écosystèmes modernes.\n\n Depuis mes débuts en 2022 à l'École Nationale d'Informatique, je construis des applications concrètes qui allient performance, simplicité et expérience utilisateur. J'aime transformer des idées en solutions fonctionnelles et utiles. Mon expertise couvre l'ensemble du développement full stack, de la conception jusqu'à la mise en production.\n\n Mon approche est à la fois rigoureuse et orientée qualité. J'accorde une grande importance à l'apprentissage continu et à l'amélioration constante de mon travail.Mon objectif est clair : créer des produits fiables, élégants et qui apportent une vraie valeur. Je ne cherche pas seulement à développer des applications, mais à créer des solutions qui font la différence.",
       projects_title: "Mes Projets",
-    projects_voir_projet: "Voir le projet",
-
-    projects_motos_title: "Gestion de vente de motos",
-    projects_motos_desc: "Application complète de gestion de stock, commandes, caisse et utilisateurs. Fonctionnalités : entrée/sortie d'articles, gestion des ventes, suivi des mouvements de caisse, gestion des fournisseurs et des utilisateurs.",
-    projects_motos_tech: ["React", "Node.js", "PostgreSQL", "Express"],
-
-  projects_places_title: "Gestion des places d'examen",
-    projects_places_desc: "Système d'attribution automatique de places pour les examens. Gestion des étudiants, des salles, des périodes d'examen, et optimisation de l'attribution en fonction des places disponibles.",
-    projects_places_tech: ["Express.js", "React", "PostgreSQL"],
-
-    projects_prestation_title: "Gestion de prestation des enseignants",
-    projects_prestation_desc: "Plateforme de gestion des prestations des enseignants basée sur le nombre d'heures. Calcul automatique, suivi et statistiques détaillées des prestations.",
-    projects_prestation_tech: ["Express", "React", "MySQL"],
-
-    projects_portfolio_title: "Portfolio & Site Vitrine",
-    projects_portfolio_desc: "Mon portfolio personnel développé avec React, Tailwind CSS et i18n. Interface moderne, responsive, thème clair/sombre, animations fluides et formulaire de contact fonctionnel.",
-    projects_portfolio_tech: ["React", "Tailwind CSS", "Framer Motion", "i18next"],
+      projects_voir_projet: "Voir le projet",
+      
+      // Projet Moto
+      projects_motos_title: "Gestion de vente de motos",
+      projects_motos_desc: "Application complète de gestion de stock, commandes, caisse et utilisateurs.",
+      projects_motos_long_desc: "Cette application permet de gérer l'ensemble des opérations d'un magasin de vente de motos : gestion des stocks en temps réel, suivi des commandes, gestion de la caisse, et administration des utilisateurs avec différents niveaux d'accès.",
+      projects_motos_tech: ["React", "Node.js", "PostgreSQL", "Express"],
+      projects_motos_feature_1: "Gestion des stocks en temps réel",
+      projects_motos_feature_2: "Génération automatique de factures",
+      projects_motos_feature_3: "Tableau de bord avec statistiques",
+      projects_motos_feature_4: "Gestion multi-utilisateurs avec rôles",
+      projects_motos_feature_5: "Export des rapports en PDF",
+      
+      // Projet Places
+      projects_places_title: "Gestion des places d'examen",
+      projects_places_desc: "Système d'attribution automatique de places pour les examens.",
+      projects_places_long_desc: "Solution intelligente pour l'attribution automatique des places d'examen. Gestion des étudiants, des salles, des périodes d'examen, et optimisation de l'attribution en fonction des places disponibles.",
+      projects_places_tech: ["Express.js", "React", "PostgreSQL"],
+      projects_places_feature_1: "Attribution automatique des places",
+      projects_places_feature_2: "Gestion des étudiants et des salles",
+      projects_places_feature_3: "Optimisation de l'espace",
+      projects_places_feature_4: "Planning des examens",
+      
+      // Projet Prestation
+      projects_prestation_title: "Gestion de prestation des enseignants",
+      projects_prestation_desc: "Plateforme de gestion des prestations des enseignants basée sur le nombre d'heures.",
+      projects_prestation_long_desc: "Plateforme complète pour le suivi des prestations des enseignants. Calcul automatique des heures, suivi détaillé, génération de statistiques et export de rapports.",
+      projects_prestation_tech: ["Express", "React", "MySQL"],
+      projects_prestation_feature_1: "Calcul automatique des prestations",
+      projects_prestation_feature_2: "Suivi des heures par enseignant",
+      projects_prestation_feature_3: "Statistiques détaillées",
+      projects_prestation_feature_4: "Génération de rapports",
+      
+      // Projet Viticole
+      projects_viticole_title: "Gestion Vinicole - VitiMaster",
+      projects_viticole_desc: "Application complète de gestion de cave viticole.",
+      projects_viticole_long_desc: "VitiMaster est une solution intégrée pour les caves viticoles qui permet de gérer l'ensemble du processus : achat de raisin auprès des viticulteurs, production de vin, vente de vin, facturation, gestion de stock et suivi de caisse.",
+      projects_viticole_tech: ["React", "Node.js", "MongoDB", "Express", "TailwindCSS"],
+      projects_viticole_feature_1: "Gestion des viticulteurs et achats de raisin",
+      projects_viticole_feature_2: "Production et suivi des lots de vin",
+      projects_viticole_feature_3: "Gestion des commandes et factures clients",
+      projects_viticole_feature_4: "Gestion des livraisons",
+      projects_viticole_feature_5: "Règlement des factures",
+      projects_viticole_feature_6: "Gestion de stock (raisin et vin)",
+      projects_viticole_feature_7: "Gestion de caisse (mouvements)",
+      projects_viticole_feature_8: "Tableaux de bord et statistiques",
+      
+      // Projet Portfolio
+      projects_portfolio_title: "Portfolio & Site Vitrine",
+      projects_portfolio_desc: "Mon portfolio personnel développé avec React, Tailwind CSS et i18n.",
+      projects_portfolio_long_desc: "Un portfolio moderne et responsive avec thème clair/sombre, animations fluides, support multilingue et formulaire de contact fonctionnel. Design épuré et performances optimisées.",
+      projects_portfolio_tech: ["React", "Tailwind CSS", "Framer Motion", "i18next"],
+      projects_portfolio_feature_1: "Thème clair/sombre",
+      projects_portfolio_feature_2: "Animations fluides",
+      projects_portfolio_feature_3: "Multilingue (i18n)",
+      projects_portfolio_feature_4: "Formulaire de contact fonctionnel",
+      projects_portfolio_feature_5: "Fully responsive",
+      
       work_title: "Ma méthode",
       contact_title: "Contact",
       download_cv: "Télécharger CV",
@@ -77,7 +121,8 @@ const resources = {
       service_support_desc: "Accompagnement technique, formation à la prise en main des solutions développées et assistance continue.",
       lang_interests_subtitle: "PERSONNALITÉ",
       lang_interests_title: "Langues & Loisirs",
-      languages_title: "Langues parlées",
+      "lang_interests_title_part1": "Langues &",
+      "lang_interests_title_part2": "Loisirs",
       malagasy: "Malgache",
       french: "Français",
       english: "Anglais",
@@ -88,41 +133,175 @@ const resources = {
       dancing_desc: "La danse comme expression corporelle et source d'énergie positive.",
       traveling: "Voyage",
       traveling_desc: "Découvrir de nouvelles cultures, paysages et enrichir ma vision du monde.",
+      find_me_on: "Retrouvez-moi sur",
+      contact_me: "Me contacter",
+      contact_me_left: "Mes coordonnées",
+      leave_coords: "Laissez vos coordonnées",
+      pseudo_placeholder: "Pseudo *",
+      email_placeholder: "Email *",
+      whatsapp_placeholder: "WhatsApp",
+      pseudo_required: "Pseudo requis",
+      email_required: "Email requis",
+      email_invalid: "Email invalide",
+      start_button: "Commencer →",
+      sending: "Envoi...",
+      welcome_message: "Bonjour {{pseudo}} ! Merci ! Je vous réponds dans les 24h.",
+      quick_question_recherches: "Qu'est-ce que tu recherches ?",
+      quick_question_disponibilites: "Disponibilités ?",
+      quick_question_parcours: "Ton parcours ?",
+      quick_reply_recherches: "Stage, CDD, CDI ou freelance. Master à l'ENI, fullstack JavaScript.",
+      quick_reply_disponibilites: "Immédiate. Stage (4-6 mois), CDD, CDI ou freelance.",
+      quick_reply_parcours: "Master à l'ENI, fullstack JavaScript (React, Node.js, Express, PostgreSQL). Plusieurs projets concrets.",
+      reply_thank_you: "Merci ! Je réponds rapidement sur {{email}}",
+      reply_error: "Désolé, une erreur technique. Vous pouvez me contacter directement à {{email}} ou par WhatsApp.",
 
-
-    }
+      skills: {
+        subtitle: "EXPERTISE",
+        titleBefore: "Mon",
+        highlight: "Laboratoire",
+        titleAfter: "de Compétences",
+        description: "Un aperçu interactif de mes technologies maîtrisées, organisées par domaine.",
+        defaultPreview: "Choisissez un domaine",
+        previewDescription: "Sélectionnez une catégorie pour explorer mes compétences.",
+        masteredTech: "Technologies maîtrisées",
+        technologiesCount: "technologies",
+        create1: "Interfaces modernes et intuitives",
+        create2: "Applications web performantes",
+        create3: "Expériences mobiles fluides",
+        categories: {
+          frontend: {
+            title: "Frontend",
+            description: "Création d'interfaces modernes, réactives et responsives avec les dernières technologies web.",
+          },
+          backend: {
+            title: "Backend",
+            description: "Conception d'API robustes, sécurisées et performantes adaptées à chaque besoin métier.",
+          },
+          database: {
+            title: "Base de données",
+            description: "Modélisation, optimisation et administration de bases de données relationnelles.",
+          },
+          devops: {
+            title: "DevOps & Outils",
+            description: "Automatisation, conteneurisation et gestion de versions pour des déploiements fiables.",
+          },
+          methodology: {
+            title: "Méthodologie",
+            description: "Application des bonnes pratiques de conception et de gestion de projet.",
+          },
+        },
+        quotes: {
+          frontend: "Je crée des interfaces qui allient esthétique et performance",
+          backend: "Je construis des architectures robustes et évolutives",
+          database: "Je structure et optimise la gestion des données",
+          devops: "J'automatise les déploiements pour plus d'efficacité",
+          methodology: "Je transforme les idées en solutions concrètes"
+        },
+        author: "Aniyh"
+      },
+      "about": {
+        "subtitle": "À propos de moi",
+        "titleBefore": "Découvrez",
+        "highlight": "mon parcours"
+      },
+      "projects": {
+        "subtitle": "Réalisations",
+        "titleBefore": "Découvrez",
+        "highlight": "mes projets",
+        "titleAfter": "",
+        "description": "Une sélection d'applications web que j'ai développées, alliant performance, design moderne et expérience utilisateur optimale.",
+        "features_title": "Fonctionnalités clés",
+        "tech_title": "Stack technique",
+        "github_button": "Code source",
+        "view_details": "Voir le projet",
+        "screenshot": "Capture"
+      },
+      "contact": {
+        "subtitle": "Restons en contact",
+        "titleBefore": "Une question, un projet ?",
+        "highlight": "Échangeons",
+        "titleAfter": "",
+        "description": "Que ce soit pour une collaboration, un conseil ou simplement discuter de vos idées, je suis à votre écoute. N'hésitez pas à me contacter via le formulaire ou directement par email."
+      }
+    },
   },
+
   en: {
     translation: {
-        hero_subtitle: "HELLO, My name is",
-      hero_title: "Lydivine RAFANANTENANA",
-      hero_desc: "Full Stack Developer specialized in JavaScript, with strong proficiency in DevOps practices.",
+      hero_subtitle: "HELLO, I'm a",
+      hero_title: "FULL STACK DEVELOPER",
+      hero_desc: "Specialized in JavaScript, with a strong command of modern frontend and backend technologies as well as DevOps practices.",
+      hero_quote: "« I don't just write code. I turn your ideas into tailored solutions, with a developer's precision and a partner's listening ear. »",
       about_title: "About",
-about_desc: "My name is RAFANANTENANA Nomenjanahary Anicet Lydivine, a full stack developer passionate about web and mobile development, with a strong affinity for JavaScript and its modern ecosystems.\n\nSince I started in 2022 at the National School of Computer Science, I have been building practical applications that combine performance, simplicity, and user experience. I enjoy turning ideas into functional and useful solutions. My expertise covers the entire full-stack development process, from design to production.\n\nMy approach is both rigorous and quality-focused. I place great importance on continuous learning and constantly improving my work. My goal is clear: to create reliable, elegant products that deliver real value. I don’t just aim to develop applications—I aim to create solutions that make a difference.",
+      about_voir_plus: "Read more",
+      about_voir_moins: "Read less",
+      about_desc: "My name is RAFANANTENANA Nomenjanahary Anicet Lydivine, a full stack developer passionate about web and mobile development, with a strong affinity for JavaScript and its modern ecosystems.\n\nSince I started in 2022 at the National School of Computer Science, I have been building practical applications that combine performance, simplicity, and user experience. I enjoy turning ideas into functional and useful solutions. My expertise covers the entire full-stack development process, from design to production.\n\nMy approach is both rigorous and quality-focused. I place great importance on continuous learning and constantly improving my work. My goal is clear: to create reliable, elegant products that deliver real value. I don't just aim to develop applications—I aim to create solutions that make a difference.",
       projects_title: "My Projects",
-    projects_voir_projet: "View project",
-
-    projects_motos_title: "Motorcycle Sales Management",
-    projects_motos_desc: "Complete application for stock management, orders, cash register and users. Features: item entry/exit, sales management, cash flow tracking, supplier and user management.",
-    projects_motos_tech: ["React", "Node.js", "PostgreSQL", "Express"],
-
-    projects_places_title: "Exam Seats Management",
-    projects_places_desc: "Automatic seat allocation system for exams. Manages students, rooms, exam periods, and optimizes allocation based on available seats.",
-    projects_places_tech: ["Express.js", "React", "PostgreSQL"],
-
-    projects_prestation_title: "Teachers' Services Management",
-    projects_prestation_desc: "Platform for managing teachers' services based on hours worked. Automatic calculation, tracking and detailed statistics of services.",
-    projects_prestation_tech: ["Express", "React", "MySQL"],
-
-    projects_portfolio_title: "Portfolio & Showcase",
-    projects_portfolio_desc: "My personal portfolio built with React, Tailwind CSS and i18n. Modern, responsive interface, light/dark theme, smooth animations and functional contact form.",
-    projects_portfolio_tech: ["React", "Tailwind CSS", "Framer Motion", "i18next"],
+      projects_voir_projet: "View project",
+      
+      // Projet Moto
+      projects_motos_title: "Motorcycle Sales Management",
+      projects_motos_desc: "Complete application for stock management, orders, cash register and users.",
+      projects_motos_long_desc: "This application manages all operations of a motorcycle sales store: real-time inventory management, order tracking, cash management, and user administration with different access levels.",
+      projects_motos_tech: ["React", "Node.js", "PostgreSQL", "Express"],
+      projects_motos_feature_1: "Real-time inventory management",
+      projects_motos_feature_2: "Automatic invoice generation",
+      projects_motos_feature_3: "Dashboard with statistics",
+      projects_motos_feature_4: "Multi-user role management",
+      projects_motos_feature_5: "PDF report export",
+      
+      // Projet Places
+      projects_places_title: "Exam Seats Management",
+      projects_places_desc: "Automatic seat allocation system for exams.",
+      projects_places_long_desc: "Smart solution for automatic exam seat allocation. Manages students, rooms, exam periods, and optimizes allocation based on available seats.",
+      projects_places_tech: ["Express.js", "React", "PostgreSQL"],
+      projects_places_feature_1: "Automatic seat allocation",
+      projects_places_feature_2: "Student and room management",
+      projects_places_feature_3: "Space optimization",
+      projects_places_feature_4: "Exam scheduling",
+      
+      // Projet Prestation
+      projects_prestation_title: "Teachers' Services Management",
+      projects_prestation_desc: "Platform for managing teachers' services based on hours worked.",
+      projects_prestation_long_desc: "Complete platform for tracking teacher services. Automatic hour calculation, detailed tracking, statistics generation and report export.",
+      projects_prestation_tech: ["Express", "React", "MySQL"],
+      projects_prestation_feature_1: "Automatic service calculation",
+      projects_prestation_feature_2: "Hour tracking per teacher",
+      projects_prestation_feature_3: "Detailed statistics",
+      projects_prestation_feature_4: "Report generation",
+      
+      // Projet Viticole
+      projects_viticole_title: "Winery Management - VitiMaster",
+      projects_viticole_desc: "Complete winery management application.",
+      projects_viticole_long_desc: "VitiMaster is an integrated solution for wineries that manages the entire process: grape purchasing from growers, wine production, wine sales, invoicing, stock management and cash tracking.",
+      projects_viticole_tech: ["React", "Node.js", "MongoDB", "Express", "TailwindCSS"],
+      projects_viticole_feature_1: "Grower management and grape purchasing",
+      projects_viticole_feature_2: "Wine batch production and tracking",
+      projects_viticole_feature_3: "Customer order and invoice management",
+      projects_viticole_feature_4: "Delivery management",
+      projects_viticole_feature_5: "Invoice payment management",
+      projects_viticole_feature_6: "Stock management (grape and wine)",
+      projects_viticole_feature_7: "Cash management (transactions)",
+      projects_viticole_feature_8: "Dashboards and statistics",
+      
+      // Projet Portfolio
+      projects_portfolio_title: "Portfolio & Showcase",
+      projects_portfolio_desc: "My personal portfolio built with React, Tailwind CSS and i18n.",
+      projects_portfolio_long_desc: "A modern, responsive portfolio with light/dark theme, smooth animations, multilingual support and functional contact form. Clean design and optimized performance.",
+      projects_portfolio_tech: ["React", "Tailwind CSS", "Framer Motion", "i18next"],
+      projects_portfolio_feature_1: "Light/Dark theme",
+      projects_portfolio_feature_2: "Smooth animations",
+      projects_portfolio_feature_3: "Multilingual (i18n)",
+      projects_portfolio_feature_4: "Functional contact form",
+      projects_portfolio_feature_5: "Fully responsive",
+      
       work_title: "My Process",
       contact_title: "Contact",
       download_cv: "Download CV",
       analyse: "Analysis",
       design: "Design",
       developpement: "Development",
+      optimisation: "Optimization",
       skills_title: "Skills",
       frontend_category: "Frontend",
       backend_category: "Backend",
@@ -150,10 +329,8 @@ about_desc: "My name is RAFANANTENANA Nomenjanahary Anicet Lydivine, a full stac
       agile_scrum: "Agile-Scrum",
       uml: "UML",
       figma: "Figma",
-      optimisation: "Optimization",
       services_subtitle: "WHAT I DO",
       services_title: "My Services",
-     // Services
       service_frontend_title: "Frontend Development",
       service_frontend_desc: "Creation of modern, reactive and responsive interfaces with React.js, Vue.js, React Native.",
       service_backend_title: "Backend Development",
@@ -167,7 +344,8 @@ about_desc: "My name is RAFANANTENANA Nomenjanahary Anicet Lydivine, a full stac
       service_support_title: "Training & Support",
       service_support_desc: "Technical support, training on developed solutions and ongoing assistance.",
       lang_interests_subtitle: "PERSONALITY",
-      lang_interests_title: "Languages & Hobbies",
+      "lang_interests_title_part1": "Languages &",
+      "lang_interests_title_part2": "Hobbies",
       languages_title: "Spoken languages",
       malagasy: "Malagasy",
       french: "French",
@@ -179,18 +357,108 @@ about_desc: "My name is RAFANANTENANA Nomenjanahary Anicet Lydivine, a full stac
       dancing_desc: "Dance as a physical expression and a source of positive energy.",
       traveling: "Traveling",
       traveling_desc: "Discover new cultures, landscapes and broaden my worldview.",
-          }
-  }
+      find_me_on: "Find me on",
+      contact_me: "Contact me",
+      contact_me_left: "My contact details",
+      leave_coords: "Leave your contact info",
+      pseudo_placeholder: "Nickname *",
+      email_placeholder: "Email *",
+      whatsapp_placeholder: "WhatsApp",
+      pseudo_required: "Nickname required",
+      email_required: "Email required",
+      email_invalid: "Invalid email",
+      start_button: "Start →",
+      sending: "Sending...",
+      welcome_message: "Hello {{pseudo}}! Thank you! I'll reply within 24h.",
+      quick_question_recherches: "What are you looking for?",
+      quick_question_disponibilites: "Availability?",
+      quick_question_parcours: "Your background?",
+      quick_reply_recherches: "Internship, CDD, CDI or freelance. Master's at ENI, fullstack JavaScript.",
+      quick_reply_disponibilites: "Immediate. Internship (4-6 months), CDD, CDI or freelance.",
+      quick_reply_parcours: "Master's at ENI, fullstack JavaScript (React, Node.js, Express, PostgreSQL). Several real projects.",
+      reply_thank_you: "Thank you! I'll reply quickly to {{email}}",
+      reply_error: "Sorry, a technical error occurred. You can contact me directly at {{email}} or via WhatsApp.",
+
+      skills: {
+        subtitle: "EXPERTISE",
+        titleBefore: "My Skills",
+        highlight: "Laboratory",
+        titleAfter: "",
+        description: "An interactive overview of my technologies, organized by domain.",
+        defaultPreview: "Pick a domain",
+        previewDescription: "Select a category to explore my skills.",
+        masteredTech: "Mastered technologies",
+        technologiesCount: "technologies",
+        create1: "Modern and intuitive interfaces",
+        create2: "High-performance web applications",
+        create3: "Smooth mobile experiences",
+        categories: {
+          frontend: {
+            title: "Frontend",
+            description: "Building modern, reactive and responsive interfaces with the latest web technologies.",
+          },
+          backend: {
+            title: "Backend",
+            description: "Designing robust, secure and performant APIs tailored to every business need.",
+          },
+          database: {
+            title: "Database",
+            description: "Modeling, optimizing and administering relational databases.",
+          },
+          devops: {
+            title: "DevOps & Tools",
+            description: "Automation, containerization and version control for reliable deployments.",
+          },
+          methodology: {
+            title: "Methodology",
+            description: "Applying best practices for design and project management.",
+          },
+        },
+        quotes: {
+          frontend: "I create interfaces that blend aesthetics and performance",
+          backend: "I build robust and scalable architectures",
+          database: "I structure and optimize data management",
+          devops: "I automate deployments for greater efficiency",
+          methodology: "I transform ideas into concrete solutions"
+        },
+        author: "Aniyh"
+      },
+      "about": {
+        "subtitle": "About me",
+        "titleBefore": "Discover",
+        "highlight": "my journey"
+      },
+      "projects": {
+        "subtitle": "Portfolio",
+        "titleBefore": "Explore",
+        "highlight": "my projects",
+        "titleAfter": "",
+        "description": "A selection of web applications I have developed, combining performance, modern design and optimal user experience.",
+        "features_title": "Key features",
+        "tech_title": "Tech stack",
+        "github_button": "Source code",
+        "view_details": "View project",
+        "screenshot": "Screenshot"
+      },
+      "contact": {
+        "subtitle": "Let's stay in touch",
+        "titleBefore": "A question, a project?",
+        "highlight": "Let's talk",
+        "titleAfter": "",
+        "description": "Whether for a collaboration, advice or just to discuss your ideas, I'm here to listen. Feel free to reach out via the form or directly by email."
+      }
+    },
+  },
 };
 
 i18n.use(initReactI18next).init({
   resources,
   lng: "fr",
-  fallbackLng: "fr", // 🔥 FIX
+  fallbackLng: "fr",
   interpolation: { escapeValue: false },
   react: {
-    useSuspense: false // 🔥 FIX
-  }
+    useSuspense: false,
+  },
 });
 
 export default i18n;

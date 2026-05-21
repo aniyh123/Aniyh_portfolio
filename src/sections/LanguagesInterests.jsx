@@ -70,19 +70,31 @@ const LanguagesInterests = () => {
   return (
     <section
       id="languages-interests"
-      className="py-20 px-[6%] bg-white text-black dark:bg-[#0B0B0F] dark:text-white transition-colors duration-500"
-    >
+     className="relative min-h-screen overflow-hidden bg-white px-6 py-24 text-slate-900 transition-colors duration-500 dark:bg-[#020817] dark:text-white">
+
       <div className="max-w-6xl mx-auto">
         <Reveal>
-          <div className="text-center mb-12">
-            <p className="text-xs tracking-[4px] uppercase font-semibold mb-3 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-              {t("lang_interests_subtitle", "À propos de moi")}
-            </p>
-              <h2 className="text-4xl font-bold text-center mb-12 text-black dark:text-white">
-              {t("lang_interests_title", "Langues & Loisirs")}
-            </h2>
-            <div className="mt-4 mx-auto w-16 h-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
-          </div>
+         <div className="mb-12 text-center">
+  <div className="flex items-center justify-center gap-3 mb-4">
+    <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+      <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+    <span className="text-xs font-semibold tracking-[4px] uppercase text-blue-400">
+      {t("lang_interests_subtitle")}
+    </span>
+    <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+      <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  </div>
+  <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl">
+    <span className="text-slate-900 dark:text-white">
+      {t("lang_interests_title_part1")}
+    </span>{" "}
+    <span className="text-blue-500">
+      {t("lang_interests_title_part2")}
+    </span>
+  </h2>
+</div>
         </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -90,7 +102,7 @@ const LanguagesInterests = () => {
           <Reveal>
             <div className="bg-gray-50 dark:bg-[#1A1A1E] rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-all">
               <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <span className="text-3xl">🗣️</span> {t("languages_title", "Langues")}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7 text-blue-400"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> {t("languages_title", "Langues")}
               </h3>
               <div className="space-y-6">
                 {languages.map((lang, idx) => (
@@ -116,7 +128,7 @@ const LanguagesInterests = () => {
                         whileInView={{ width: `${lang.level}%` }}
                         transition={{ duration: 1, ease: "easeOut" }}
                         viewport={{ once: true }}
-                        className="h-full rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
+                       className="h-full rounded-full bg-gradient-to-r from-blue-800 to-blue-600"
                       />
                     </div>
                   </motion.div>
@@ -136,7 +148,7 @@ const LanguagesInterests = () => {
               
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold flex items-center gap-2">
-                  <span className="text-3xl">✨</span> {t("interests_title", "Centres d'intérêt")}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7 text-blue-400"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> {t("interests_title", "Centres d'intérêt")}
                 </h3>
                 <div className="grid grid-cols-1 gap-4 mt-4">
                   {interests.map((interest, idx) => (
@@ -147,9 +159,9 @@ const LanguagesInterests = () => {
                       transition={{ delay: idx * 0.1 }}
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.02, y: -4 }}
-                      className="flex items-start gap-4 p-4 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 hover:border-purple-500/50 transition-all"
+                      className="flex items-start gap-4 p-4 rounded-xl bg-white/50 dark:bg-black/20 border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 transition-all"
                     >
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-purple-500 dark:text-purple-400 shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600/20 to-blue-400/20 flex items-center justify-center text-blue-500 dark:text-blue-400 shrink-0">
                         <div className="w-6 h-6">{interest.icon}</div>
                       </div>
                       <div>

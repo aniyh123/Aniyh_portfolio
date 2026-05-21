@@ -50,34 +50,31 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-5 px-5 py-2.5 rounded-2xl border transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-8 py-3 transition-all duration-500 ${
           scrolled
-            ? "bg-black/80 border-white/10 backdrop-blur-xl shadow-lg shadow-purple-500/20"
-            : "bg-black/50 border-white/5 backdrop-blur-md"
+            ? "bg-black/80 border-b border-white/10 backdrop-blur-xl shadow-md"
+            : "bg-black/50 border-b border-white/5 backdrop-blur-md"
         }`}
       >
-        {/* Logo */}
-        <a
-          href="#"
-          className="shrink-0 text-lg font-black tracking-tight text-white"
-          style={{ textDecoration: "none" }}
-        >
-          <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-            A
-          </span>
-          niyh
-        </a>
+        {/* Partie gauche : Logo + séparateur */}
+        <div className="flex items-center gap-5">
+          <a
+            href="#"
+            className="shrink-0 text-lg font-black tracking-tight text-white"
+            style={{ textDecoration: "none" }}
+          >
+            <span className="text-blue-400">A</span>niyh
+          </a>
+          <div className="hidden md:block h-5 w-px bg-white/10" />
+        </div>
 
-        {/* Divider visible uniquement sur desktop */}
-        <div className="hidden md:block h-5 w-px bg-white/10" />
-
-        {/* Navigation desktop */}
-        <div className="hidden md:flex items-center gap-1">
+       
+        <div className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
           {navLinks.map(({ href, label }) => (
             <a
               key={href}
               href={href}
-              className="rounded-lg px-3 py-1.5 text-sm font-medium text-white/60 transition-all duration-200 hover:bg-white/10 hover:text-white"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-white/60 transition-all duration-200 hover:bg-white/10 hover:text-white whitespace-nowrap"
               style={{ textDecoration: "none" }}
             >
               {label}
@@ -85,22 +82,20 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Divider desktop */}
-        <div className="hidden md:block h-5 w-px bg-white/10" />
-
-        {/* Bouton burger mobile */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5"
-          aria-label="Menu"
-        >
-          <span className={`block w-5 h-0.5 bg-white transition-transform duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-opacity duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-transform duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-        </button>
-
-        {/* Right actions (langue, thème, CV) */}
+      
         <div className="flex items-center gap-2">
+      
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5"
+            aria-label="Menu"
+          >
+            <span className={`block w-5 h-0.5 bg-white transition-transform duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-white transition-opacity duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-white transition-transform duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          </button>
+
+        
           <div ref={dropdownRef} className="relative">
             <button
               type="button"
@@ -152,7 +147,7 @@ export default function Navbar() {
                       }}
                       className={`flex items-center w-full gap-3 px-4 py-2 text-left text-sm font-medium transition-colors ${
                         isActive
-                          ? "bg-purple-700/10 text-purple-500"
+                          ? "bg-blue-700/10 text-blue-400"
                           : "text-white/70 hover:bg-white/5"
                       }`}
                     >
@@ -166,25 +161,25 @@ export default function Navbar() {
             )}
           </div>
 
+   
           <ThemeToggle />
 
-          {/* Téléchargement du CV */}
           <a
-            href="/CV.pdf"
+            href="/CVLydivine.pdf"
             download
             className="flex items-center gap-2 px-4 py-1.5 rounded-xl text-white font-bold text-sm"
             style={{
-              background: "linear-gradient(to right, #a855f7, #ec4899)",
-              boxShadow: "0 4px 15px rgba(168,85,247,0.35)",
+              background: "linear-gradient(to right, #1e3a8a, #2563eb)",
+              boxShadow: "0 4px 15px rgba(37,99,235,0.35)",
               whiteSpace: "nowrap",
               transition: "all 0.2s",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "0 4px 25px rgba(168,85,247,0.55)";
+              e.currentTarget.style.boxShadow = "0 4px 25px rgba(37,99,235,0.55)";
               e.currentTarget.style.transform = "scale(1.05)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 4px 15px rgba(168,85,247,0.35)";
+              e.currentTarget.style.boxShadow = "0 4px 15px rgba(37,99,235,0.35)";
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
@@ -209,11 +204,11 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Menu mobile déroulant */}
+     
       {mobileMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="fixed top-[72px] left-4 right-4 z-40 rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 p-4 md:hidden"
+          className="fixed top-[65px] left-4 right-4 z-40 rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 p-4 md:hidden"
         >
           <div className="flex flex-col gap-3">
             {navLinks.map(({ href, label }) => (
