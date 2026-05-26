@@ -109,28 +109,6 @@ export default function SkillLaboratorySection() {
     UML: <FaCode className="text-blue-400 text-4xl" />,
   };
 
-  const techLevels = {
-    "React.js": "85%",
-    "Vue.js": "75%",
-    "Next.js": "50%",
-    "React Native": "70%",
-    "JavaScript": "85%",
-    "TailwindCSS": "85%",
-    "Node.js": "85%",
-    "Express.js": "85%",
-    "MySQL": "90%",
-    "PostgreSQL": "90%",
-    "MongoDB": "90%",
-    "Docker": "00%",
-    "Kubernetes": "80%",
-    "Git": "87%",
-    "GitHub": "87%",
-    "Postman": "80%",
-    "Merise": "90%",
-    "Scrum": "80%",
-    "UML": "80%",
-  };
-
   return (
     <section className="relative min-h-screen overflow-hidden bg-white px-6 py-24 text-slate-900 transition-colors duration-500 dark:bg-[#020817] dark:text-white">
 
@@ -271,35 +249,20 @@ export default function SkillLaboratorySection() {
             </h3>
 
             <div className="mt-8 space-y-6">
-              {activeCategory.techs.map((tech, index) => {
-                const level = techLevels[tech] || `${75 + index * 5}%`;
-
-                return (
-                  <motion.div
-                    key={tech}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-3">
-                        <div>{techIcons[tech]}</div>
-                        <span>{tech}</span>
-                      </div>
-                      <span className="text-blue-400">{level}</span>
-                    </div>
-
-                    <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: level }}
-                        transition={{ duration: 0.8 }}
-                        className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
-                      />
-                    </div>
-                  </motion.div>
-                );
-              })}
+              {activeCategory.techs.map((tech, index) => (
+                <motion.div
+                  key={tech}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                   className="flex justify-center"
+                >
+                  <div className="mb-2 flex items-center gap-3 text-sm">
+                    <div>{techIcons[tech]}</div>
+                    <span>{tech}</span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>

@@ -12,7 +12,7 @@ import {
   SiGit,
   SiGithub,
 } from "react-icons/si";
-import heroPhoto from "../assets/aniyh1.png";
+import heroPhoto from "../assets/Aniyh.jpeg";
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
@@ -26,6 +26,7 @@ export default function Hero() {
   const messagesEndRef = useRef(null);
   const WEB3FORMS_KEY = "abebf0c8-5d10-4973-835d-a1519ce5d330";
   const [isContactVisible, setIsContactVisible] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const contactSection = document.getElementById("contact");
@@ -35,6 +36,16 @@ export default function Hero() {
       { threshold: 0.1 }
     );
     observer.observe(contactSection);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const checkDark = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkDark();
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     return () => observer.disconnect();
   }, []);
 
@@ -337,7 +348,7 @@ export default function Hero() {
               {t("hero_subtitle") || "const developer = { fullstack: true }"}
             </motion.div>
 
-    <motion.h1
+<motion.h1
   initial={{ opacity: 0, y: 30 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.2 }}
@@ -349,7 +360,10 @@ export default function Hero() {
         {devLetters.map((letter, idx) => (
           <motion.span
             key={`dev-${idx}`}
-            animate={{ color: ["#2563eb", "#1e293b", "#2563eb"] }}
+            animate={isDark 
+              ? { color: ["#3b82f6", "#ffffff", "#3b82f6"] }
+              : { color: ["#2563eb", "#1e293b", "#2563eb"] }
+            }
             transition={{
               duration: 2.5,
               delay: (devLetters.length - 1 - idx) * 0.12,
@@ -366,7 +380,10 @@ export default function Hero() {
         {stackLetters.map((letter, idx) => (
           <motion.span
             key={`stack-${idx}`}
-            animate={{ color: ["#1e293b", "#2563eb", "#1e293b"] }}
+            animate={isDark 
+              ? { color: ["#ffffff", "#3b82f6", "#ffffff"] }
+              : { color: ["#1e293b", "#2563eb", "#1e293b"] }
+            }
             transition={{
               duration: 2.5,
               delay: idx * 0.12,
@@ -386,7 +403,10 @@ export default function Hero() {
         {stackLetters.map((letter, idx) => (
           <motion.span
             key={`stack-${idx}`}
-            animate={{ color: ["#1e293b", "#2563eb", "#1e293b"] }}
+            animate={isDark 
+              ? { color: ["#ffffff", "#3b82f6", "#ffffff"] }
+              : { color: ["#1e293b", "#2563eb", "#1e293b"] }
+            }
             transition={{
               duration: 2.5,
               delay: idx * 0.12,
@@ -403,7 +423,10 @@ export default function Hero() {
         {devLetters.map((letter, idx) => (
           <motion.span
             key={`dev-${idx}`}
-            animate={{ color: ["#2563eb", "#1e293b", "#2563eb"] }}
+            animate={isDark 
+              ? { color: ["#3b82f6", "#ffffff", "#3b82f6"] }
+              : { color: ["#2563eb", "#1e293b", "#2563eb"] }
+            }
             transition={{
               duration: 2.5,
               delay: (devLetters.length - 1 - idx) * 0.12,
