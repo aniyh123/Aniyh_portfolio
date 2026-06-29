@@ -46,7 +46,8 @@ const projectsData = [
     longDescKey: "projects_motos_long_desc",
     techs: ["React", "Node.js", "PostgreSQL", "Express"],
     screenshots: [moto1, moto2, moto3, moto4, moto5, moto6],
-    github: "https://github.com/aniyh/gestion-motos",
+    githubFrontend: "https://github.com/aniyh123/VenteMoto_frontend",
+    githubBackend: "https://github.com/aniyh123/gestion-moto",
     featuresKeys: [
       "projects_motos_feature_1",
       "projects_motos_feature_2",
@@ -62,7 +63,8 @@ const projectsData = [
     longDescKey: "projects_places_long_desc",
     techs: ["Express.js", "React", "PostgreSQL"],
     screenshots: [place1, place2, place3, place4, place5],
-    github: "https://github.com/aniyh/gestion-places",
+    githubFrontend: "https://github.com/aniyh123/GestionPlace_frontend",
+    githubBackend: "https://github.com/aniyh123/GestionPlace_backend",
     featuresKeys: [
       "projects_places_feature_1",
       "projects_places_feature_2",
@@ -92,7 +94,8 @@ const projectsData = [
     longDescKey: "projects_viticole_long_desc",
     techs: ["React", "Node.js", "MongoDB", "Express", "TailwindCSS"],
     screenshots: [vitimaster2, vitimaster3, vitimaster4, vitimaster5, vitimaster6, vitimaster7, vitimaster8],
-    github: "https://github.com/aniyh/gestion-viticole",
+    githubFrontend: "https://github.com/aniyh123/ViniBetsi_frontend",
+    githubBackend: "https://github.com/aniyh123/ViniBetsi_backend",
     featuresKeys: [
       "projects_viticole_feature_1",
       "projects_viticole_feature_2",
@@ -111,7 +114,7 @@ const projectsData = [
     longDescKey: "projects_portfolio_long_desc",
     techs: ["React", "Tailwind CSS", "Framer Motion", "i18next"],
     screenshots: [portfolio],
-    github: "https://github.com/aniyh/portfolio",
+    github: "https://github.com/aniyh123/Aniyh_portfolio",
     featuresKeys: [
       "projects_portfolio_feature_1",
       "projects_portfolio_feature_2",
@@ -254,14 +257,34 @@ function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          <div className="flex justify-center pb-4">
-            <button
-              onClick={() => window.open(project.github, "_blank")}
-              className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
-              style={{ cursor: "pointer" }}
-            >
-              <FaGithub /> {t("projects.github_button")}
-            </button>
+          <div className="flex flex-wrap justify-center gap-4 pb-4">
+            {project.githubFrontend && (
+              <button
+                onClick={() => window.open(project.githubFrontend, "_blank")}
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{ cursor: "pointer" }}
+              >
+                <FaGithub /> {t("projects.github_frontend_button", "Frontend")}
+              </button>
+            )}
+            {project.githubBackend && (
+              <button
+                onClick={() => window.open(project.githubBackend, "_blank")}
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{ cursor: "pointer" }}
+              >
+                <FaGithub /> {t("projects.github_backend_button", "Backend")}
+              </button>
+            )}
+            {!project.githubFrontend && !project.githubBackend && project.github && (
+              <button
+                onClick={() => window.open(project.github, "_blank")}
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{ cursor: "pointer" }}
+              >
+                <FaGithub /> {t("projects.github_button")}
+              </button>
+            )}
           </div>
         </div>
       </motion.div>
