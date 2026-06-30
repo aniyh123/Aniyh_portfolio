@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -61,54 +61,25 @@ function useTheme() {
 
 function tokens(dark) {
   return {
-    bgStop0: dark ? "#020817" : "#e8f2ff",
-    bgStop1: dark ? "#020817" : "#ffffff",
-    blobColor: dark ? "transparent" : "transparent",
+    thread: dark ? "#e08a5c" : "#c9683a",
     accent: "#2dd4ff",
-    accentAlt: "#38bdf8",
-    cgStop0: dark ? "#1a6faa" : "#1e90d4",
-    cgStop1: dark ? "#0d3a5e" : "#1a70b0",
-    cgStop2: dark ? "#050e1e" : "#0f4a80",
-    haloOp0: dark ? "0.3"  : "0.18",
-    haloOp1: dark ? "0.1"  : "0.06",
-    lineBaseOp:  dark ? "0.28" : "0.45",
-    lineHovOp:   dark ? "0.75" : "0.9",
-    centerTextWhite:   dark ? "#ffffff"      : "#0f172a",
-    centerTextSub:     dark ? "rgba(255,255,255,0.4)" : "rgba(15,23,42,0.45)",
-    cardBg:       dark ? "linear-gradient(135deg,rgba(8,20,52,0.92),rgba(4,10,28,0.96))"
-                       : "linear-gradient(135deg,rgba(240,248,255,0.95),rgba(220,238,255,0.98))",
-    cardBgHov:    dark ? "linear-gradient(135deg,rgba(18,48,95,0.97),rgba(8,22,50,0.99))"
-                       : "linear-gradient(135deg,rgba(210,235,255,0.98),rgba(195,225,255,0.99))",
-    cardBorder:   dark ? "rgba(45,212,255,0.16)" : "rgba(45,212,255,0.30)",
-    cardBorderHov:dark ? "rgba(45,212,255,0.50)" : "rgba(45,212,255,0.65)",
-    cardTitleColor:dark? "rgba(255,255,255,0.82)": "#0f172a",
-    cardTitleHov:  dark? "#ffffff"               : "#0c1a2e",
-    cardDescColor: dark? "rgba(255,255,255,0.42)": "rgba(15,23,42,0.55)",
-    badgeBg:     dark ? "rgba(5,15,40,0.95)"    : "rgba(230,244,255,0.95)",
-    badgeBorder: "rgba(45,212,255,0.45)",
-    badgeText:   "#2dd4ff",
-    statsBg:     dark ? "rgba(5,14,36,0.85)"    : "rgba(235,246,255,0.9)",
-    statsBorder: dark ? "rgba(45,212,255,0.10)" : "rgba(45,212,255,0.22)",
-    statsDivider:dark ? "rgba(45,212,255,0.07)" : "rgba(45,212,255,0.14)",
-    statsLabelColor: dark ? "#ffffff"           : "#0f172a",
-    statsSubColor:   dark ? "rgba(255,255,255,0.32)" : "rgba(15,23,42,0.5)",
-    statsIconBg:     dark ? "rgba(45,212,255,0.07)" : "rgba(45,212,255,0.1)",
-    statsIconBorder: dark ? "rgba(45,212,255,0.18)" : "rgba(45,212,255,0.3)",
-    mobileCenterBg: dark
-      ? "radial-gradient(circle,rgba(26,111,168,0.85),rgba(5,14,30,0.97))"
-      : "radial-gradient(circle,rgba(26,111,168,0.7),rgba(15,70,130,0.9))",
-    mobileCenterText: dark ? "#ffffff" : "#ffffff",
-    mobileCardBg:   dark ? "linear-gradient(135deg,rgba(8,20,52,0.92),rgba(4,10,28,0.96))"
-                         : "linear-gradient(135deg,rgba(235,246,255,0.95),rgba(215,234,255,0.98))",
-    mobileCardTitle:dark ? "#ffffff" : "#0f172a",
-    mobileCardDesc: dark ? "rgba(255,255,255,0.42)" : "rgba(15,23,42,0.55)",
-    headerTitle: dark ? "#ffffff" : "#0f172a",
-    headerDesc:  dark ? "rgba(255,255,255,0.38)" : "rgba(15,23,42,0.55)",
-    starsOpacity: dark ? 1 : 0,
+    cardBg: dark
+      ? "linear-gradient(135deg,rgba(15,30,60,0.98),rgba(8,18,40,0.98))"
+      : "linear-gradient(135deg,rgba(255,255,255,0.98),rgba(240,248,255,0.98))",
+    cardBgHov: dark
+      ? "linear-gradient(135deg,rgba(25,50,90,0.99),rgba(15,30,70,0.99))"
+      : "linear-gradient(135deg,rgba(255,255,255,0.99),rgba(235,245,255,0.99))",
+    cardTitleColor: dark ? "rgba(255,255,255,0.9)" : "#0f172a",
+    cardTitleHov: dark ? "#ffffff" : "#0c1a2e",
+    cardDescColor: dark ? "rgba(255,255,255,0.55)" : "rgba(15,23,42,0.6)",
+    badgeBg: dark ? "rgba(5,15,40,0.98)" : "rgba(255,243,235,0.98)",
+    badgeBorder: dark ? "rgba(224,138,92,0.55)" : "rgba(201,104,58,0.55)",
+    badgeText: dark ? "#e08a5c" : "#c9683a",
+    scallop: dark ? "rgba(224,138,92,0.45)" : "rgba(201,104,58,0.5)",
   };
 }
 
-function NodeIcon({ type, size = 44 }) {
+function NodeIcon({ type, size = 36 }) {
   const s = size;
   const c = "#2dd4ff";
   if (type === "react") return (
@@ -150,263 +121,190 @@ function NodeIcon({ type, size = 44 }) {
   return null;
 }
 
-function StatIcon({ type }) {
-  const p = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "#2dd4ff", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" };
-  if (type === "rocket") return <svg {...p}><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>;
-  if (type === "shield") return <svg {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>;
-  if (type === "code")   return <svg {...p}><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>;
-  if (type === "cloud")  return <svg {...p}><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>;
-  return null;
+const STEPS = [{ side: "up" }, { side: "down" }, { side: "up" }, { side: "down" }, { side: "up" }];
+
+function buildStitchPath(width, height, n) {
+  const margin = 70;
+  const usable = width - margin * 2;
+  const step = usable / (n - 1);
+  const yUp = height * 0.32;
+  const yDown = height * 0.68;
+  let d = "";
+  for (let i = 0; i < n; i++) {
+    const x = margin + step * i;
+    const y = STEPS[i].side === "up" ? yUp : yDown;
+    if (i === 0) {
+      d += `M ${x} ${y}`;
+    } else {
+      const px = margin + step * (i - 1);
+      const py = STEPS[i - 1].side === "up" ? yUp : yDown;
+      const mx = (px + x) / 2;
+      d += ` Q ${mx} ${py} ${mx} ${(py + y) / 2} T ${x} ${y}`;
+    }
+  }
+  return { d, points: STEPS.map((s, i) => ({ x: margin + step * i, y: s.side === "up" ? yUp : yDown })) };
 }
 
-const CX = 500, CY = 385;
+const VB_W = 1200, VB_H = 420;
+const STITCH = buildStitchPath(VB_W, VB_H, NODES.length);
 
-const CDOTS = {
-  frontend: { x: 345, y: 300 },
-  backend:  { x: 655, y: 300 },
-  database: { x: 655, y: 470 },
-  devops:   { x: 345, y: 470 },
-  project:  { x: 500, y: 530 },
-};
-
-const KDOTS = {
-  frontend: { x: 300, y: 248 },
-  backend:  { x: 700, y: 248 },
-  database: { x: 700, y: 524 },
-  devops:   { x: 300, y: 524 },
-  project:  { x: 500, y: 640 },
-};
-
-function linePath(id) {
-  const c = CDOTS[id], k = KDOTS[id];
-  if (id === "frontend") return `M ${c.x} ${c.y} L ${k.x + 10} ${c.y} L ${k.x} ${k.y}`;
-  if (id === "backend")  return `M ${c.x} ${c.y} L ${k.x - 10} ${c.y} L ${k.x} ${k.y}`;
-  if (id === "database") return `M ${c.x} ${c.y} L ${k.x - 10} ${c.y} L ${k.x} ${k.y}`;
-  if (id === "devops")   return `M ${c.x} ${c.y} L ${k.x + 10} ${c.y} L ${k.x} ${k.y}`;
-  if (id === "project")  return `M ${c.x} ${c.y} L ${c.x} ${k.y + 8} L ${k.x} ${k.y}`;
-  return `M ${c.x} ${c.y} L ${k.x} ${k.y}`;
-}
-
-function ArchSVG({ hoveredId, lang, dashOff, tk }) {
+function StitchLine({ tk, hoveredIdx, dashOff }) {
   return (
-    <svg
-      viewBox="0 0 1000 820"
-      preserveAspectRatio="xMidYMid meet"
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
-    >
-      <defs>
-        <radialGradient id="cg" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor={tk.cgStop0} stopOpacity="0.95"/>
-          <stop offset="45%"  stopColor={tk.cgStop1} stopOpacity="0.88"/>
-          <stop offset="100%" stopColor={tk.cgStop2} stopOpacity="0.99"/>
-        </radialGradient>
-        <radialGradient id="halo" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor="#2dd4ff" stopOpacity={tk.haloOp0}/>
-          <stop offset="55%"  stopColor="#1a9fd8" stopOpacity={tk.haloOp1}/>
-          <stop offset="100%" stopColor="#0a6fa8" stopOpacity="0"/>
-        </radialGradient>
-        <radialGradient id="svgbg" cx="50%" cy="40%" r="60%">
-          <stop offset="0%"   stopColor={tk.bgStop0}/>
-          <stop offset="100%" stopColor={tk.bgStop1}/>
-        </radialGradient>
-        <filter id="gl" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="5" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="gl2" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="10" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-          <path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#2dd4ff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        </marker>
-      </defs>
-
-      <rect width="1000" height="820" fill="transparent" />
-
-      <circle cx="200" cy="200" r="200" fill={tk.blobColor} fillOpacity="0.18"/>
-      <circle cx="800" cy="600" r="180" fill={tk.blobColor} fillOpacity="0.14"/>
-
-      {NODES.map(node => {
-        const hov  = hoveredId === node.id;
-        const path = linePath(node.id);
-        return (
-          <g key={node.id}>
-            <path d={path} fill="none" stroke="#2dd4ff"
-              strokeWidth={hov ? 1.6 : 1.1}
-              strokeOpacity={hov ? parseFloat(tk.lineHovOp) : parseFloat(tk.lineBaseOp)}
-              strokeDasharray="7 6" strokeDashoffset={-dashOff}
-              strokeLinecap="round"
-              style={{ transition: "stroke-opacity 0.3s, stroke-width 0.3s" }}/>
-            <path d={path} fill="none" stroke="#2dd4ff"
-              strokeWidth={hov ? 4 : 2}
-              strokeOpacity={hov ? 0.35 : 0.07}
-              strokeDasharray="25 150" strokeDashoffset={-dashOff * 2.8}
-              filter="url(#gl)"
-              style={{ transition: "stroke-opacity 0.3s" }}/>
-            <path d={path} fill="none" stroke="#2dd4ff"
-              strokeWidth="1.2"
-              strokeOpacity={hov ? 0.9 : parseFloat(tk.lineBaseOp) + 0.1}
-              markerEnd="url(#arr)"
-              style={{ transition: "stroke-opacity 0.3s" }}/>
-          </g>
-        );
-      })}
-
-      {Object.entries(CDOTS).map(([id, p]) => (
-        <g key={id} filter="url(#gl)">
-          <circle cx={p.x} cy={p.y} r={8}   fill="#2dd4ff" fillOpacity="0.18"/>
-          <circle cx={p.x} cy={p.y} r={4.5} fill="#2dd4ff" fillOpacity="0.75"/>
-          <circle cx={p.x} cy={p.y} r={2}   fill="white"/>
+    <svg viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="none"
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}>
+      <path d={STITCH.d} fill="none" stroke={tk.thread} strokeWidth="2"
+        strokeDasharray="10 8" strokeDashoffset={-dashOff} strokeLinecap="round" opacity="0.55"/>
+      {STITCH.points.map((p, i) => (
+        <g key={i}>
+          <circle cx={p.x} cy={p.y} r={hoveredIdx === i ? 7 : 5} fill={tk.thread}
+            opacity={hoveredIdx === i ? 1 : 0.75} style={{ transition: "r 0.2s, opacity 0.2s" }}/>
+          <circle cx={p.x} cy={p.y} r={hoveredIdx === i ? 13 : 9} fill="none" stroke={tk.thread}
+            strokeWidth="1" opacity={hoveredIdx === i ? 0.5 : 0.25} style={{ transition: "r 0.2s, opacity 0.2s" }}/>
         </g>
       ))}
-
-      {Object.entries(KDOTS).map(([id, p]) => (
-        <g key={id} filter="url(#gl)">
-          <circle cx={p.x} cy={p.y} r={8}   fill="#2dd4ff" fillOpacity="0.18"/>
-          <circle cx={p.x} cy={p.y} r={4.5} fill="#2dd4ff" fillOpacity="0.75"/>
-          <circle cx={p.x} cy={p.y} r={2}   fill="white"/>
-        </g>
-      ))}
-
-      <circle cx={CX} cy={CY} r={155}
-        fill="none" stroke="#2dd4ff" strokeWidth="0.8" strokeOpacity="0.2"
-        strokeDasharray="9 7" strokeDashoffset={dashOff * 0.6}/>
-      <rect x={CX-205} y={CY-155} width="410" height="310" rx="155"
-        fill="none" stroke="#2dd4ff" strokeWidth="0.8" strokeOpacity="0.14"
-        strokeDasharray="11 9" strokeDashoffset={-dashOff * 0.4}/>
-
-      <circle cx={CX} cy={CY} r={165} fill="url(#halo)" filter="url(#gl2)"/>
-
-      <circle cx={CX} cy={CY} r={104} fill="none" stroke="#2dd4ff" strokeWidth="2.5" strokeOpacity="0.5" filter="url(#gl)"/>
-      <circle cx={CX} cy={CY} r={104} fill="none" stroke="#2dd4ff" strokeWidth="0.8" strokeOpacity="0.9"/>
-
-      <circle cx={CX} cy={CY} r={100} fill="url(#cg)"/>
-      <circle cx={CX} cy={CY} r={88}  fill="none" stroke="#2dd4ff" strokeWidth="0.5" strokeOpacity="0.25" strokeDasharray="4 3"/>
-
-      <text x={CX} y={CY-28} textAnchor="middle" fill="#2dd4ff" fontSize="30" fontWeight="300" fontFamily="monospace" opacity="0.9">&lt;/&gt;</text>
-      <text x={CX} y={CY+12} textAnchor="middle" fill="white" fontSize="22" fontWeight="800" fontFamily="system-ui,sans-serif">Fullstack</text>
-      <text x={CX} y={CY+38} textAnchor="middle" fill="#2dd4ff" fontSize="22" fontWeight="800" fontFamily="system-ui,sans-serif">Developer</text>
-      <text x={CX} y={CY+60} textAnchor="middle" fill="white" fontSize="9.5" opacity="0.4" fontFamily="system-ui,sans-serif">
-        {lang === "fr" ? "Je conçois, développe et" : "I design, develop and"}
-      </text>
-      <text x={CX} y={CY+74} textAnchor="middle" fill="white" fontSize="9.5" opacity="0.4" fontFamily="system-ui,sans-serif">
-        {lang === "fr" ? "déploie des applications" : "deploy performant and"}
-      </text>
-      <text x={CX} y={CY+88} textAnchor="middle" fill="white" fontSize="9.5" opacity="0.4" fontFamily="system-ui,sans-serif">
-        {lang === "fr" ? "performantes et scalables" : "scalable applications"}
-      </text>
     </svg>
   );
 }
 
-function Card({ node, lang, hov, onEnter, onLeave, posStyle, tk }) {
+// Contour de carte dessiné à la façon d'un point de crochet : un rectangle
+// arrondi tracé au trait. Le tracé est volontairement lent (2.4s) avec une
+// courbe d'accélération irrégulière pour évoquer une aiguille qui avance par
+// à-coups, point après point, plutôt qu'une barre de progression plate.
+function StitchedBorder({ tk, delay }) {
+  return (
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none"
+      style={{ pointerEvents: "none" }}>
+      <motion.rect
+        x="1.5" y="1.5" width="97" height="97" rx="9"
+        fill="none" stroke={tk.thread} strokeWidth="1.6"
+        strokeDasharray="3 2.2" vectorEffect="non-scaling-stroke"
+        initial={{ pathLength: 0, opacity: 0 }}
+        whileInView={{ pathLength: 1, opacity: 0.9 }}
+        viewport={{ once: true }}
+        transition={{
+          pathLength: { duration: 2.4, delay, ease: [0.25, 0.1, 0.3, 1] },
+          opacity: { duration: 0.4, delay },
+        }}
+      />
+    </svg>
+  );
+}
+
+// Bord festonné en bas de carte façon pelote de laine : une rangée de petits
+// demi-cercles obtenue en pur CSS (repeating-radial-gradient), pas une image.
+function scallopStyle(color) {
+  return {
+    backgroundImage: `radial-gradient(circle at 6px 0px, transparent 5px, ${color} 5.5px, ${color} 6px, transparent 6.5px)`,
+    backgroundSize: "12px 7px",
+    backgroundRepeat: "repeat-x",
+    backgroundPosition: "bottom",
+    height: 7,
+    width: "100%",
+    opacity: 0.6,
+  };
+}
+
+function StepCard({ node, lang, hov, onEnter, onLeave, side, tk, idx }) {
   const title = lang === "fr" ? node.titleFr : node.titleEn;
-  const desc  = lang === "fr" ? node.descFr  : node.descEn;
+  const desc = lang === "fr" ? node.descFr : node.descEn;
+  // Séquence beaucoup plus lente et espacée : chaque carte attend que la
+  // précédente ait fini de se tisser avant de commencer la sienne.
+  const delay = idx * 0.55;
 
   return (
     <motion.div
-      className="absolute"
-      style={posStyle}
+      className="flex-1 flex flex-col items-center px-2"
+      style={{ marginTop: side === "down" ? "13%" : "0%" }}
+      initial={{ opacity: 0, y: 24, rotate: side === "down" ? -3 : 3 }}
+      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, delay, ease: [0.34, 1.2, 0.4, 1] }}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      animate={{ y: [0, -5, 0] }}
-      transition={{ duration: 5 + parseInt(node.num) * 0.8, repeat: Infinity, ease: "easeInOut", delay: parseInt(node.num) * 0.55 }}
     >
-      <div
-        className="absolute -top-4 right-4 text-xs font-bold px-2.5 py-1 rounded-full z-10"
-        style={{
-          background: tk.badgeBg,
-          border: `1px solid ${tk.badgeBorder}`,
-          color: tk.badgeText,
-          boxShadow: "0 0 14px rgba(45,212,255,0.2)",
-          transition: "background 0.5s, border-color 0.5s",
-        }}
-      >
-        {node.num}
-      </div>
-
-      <div
-        className="w-full h-full rounded-2xl p-4 flex items-start gap-3 relative overflow-hidden"
+      {/* Oscillation continue, légère et lente, façon léger déhanché de
+          danseuse au repos — démarre une fois la carte posée, après le
+          temps que prend le tracé de la bordure */}
+      <motion.div
+        className="relative w-full max-w-[210px] rounded-2xl p-4 flex flex-col items-start gap-2"
+        animate={{ rotate: [0, 1.4, 0, -1.4, 0], y: [0, -2, 0, 2, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: delay + 2.6 }}
         style={{
           background: hov ? tk.cardBgHov : tk.cardBg,
-          border: `1px solid ${hov ? tk.cardBorderHov : tk.cardBorder}`,
           boxShadow: hov
-            ? "0 0 28px rgba(45,212,255,0.18), 0 0 55px rgba(45,212,255,0.07), inset 0 1px 0 rgba(255,255,255,0.05)"
-            : "none",
-          backdropFilter: "blur(10px)",
-          transition: "all 0.3s ease",
+            ? "0 0 20px rgba(201,104,58,0.16), 0 0 36px rgba(45,212,255,0.05)"
+            : "0 2px 10px rgba(0,0,0,0.08)",
+          transition: "box-shadow 0.3s ease, background 0.3s ease",
         }}
       >
-        <div className="absolute top-0 left-6 right-6 h-px" style={{
-          background: "linear-gradient(to right, transparent, rgba(45,212,255,0.55), transparent)",
-          opacity: hov ? 1 : 0.3, transition: "opacity 0.3s",
-        }}/>
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{
-          background: "linear-gradient(to right, rgba(45,212,255,0.35), transparent)",
-          opacity: hov ? 0.7 : 0.15, transition: "opacity 0.3s",
-        }}/>
+        <StitchedBorder tk={tk} delay={delay + 0.2} />
 
-        <div className="shrink-0 mt-0.5" style={{
-          filter: hov ? "drop-shadow(0 0 10px rgba(45,212,255,0.55))" : "drop-shadow(0 0 3px rgba(45,212,255,0.2))",
-          transition: "filter 0.3s",
-        }}>
-          <NodeIcon type={node.icon} size={42}/>
-        </div>
+        <motion.div
+          className="flex items-center justify-between w-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: delay + 0.9 }}
+        >
+          <NodeIcon type={node.icon} size={32}/>
+          <span className="text-[11px] font-bold px-2 py-0.5 rounded-full"
+            style={{ background: tk.badgeBg, border: `1px solid ${tk.badgeBorder}`, color: tk.badgeText }}>
+            {node.num}
+          </span>
+        </motion.div>
+        <motion.h3
+          className="font-bold text-sm leading-tight"
+          style={{ color: hov ? tk.cardTitleHov : tk.cardTitleColor }}
+          initial={{ opacity: 0, y: 6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: delay + 1.2 }}
+        >
+          {title}
+        </motion.h3>
+        <motion.p
+          className="text-xs leading-relaxed" style={{ color: tk.cardDescColor }}
+          initial={{ opacity: 0, y: 6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: delay + 1.45 }}
+        >
+          {desc}
+        </motion.p>
 
-        <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-sm leading-snug mb-2"
-            style={{ color: hov ? tk.cardTitleHov : tk.cardTitleColor, transition: "color 0.3s" }}>
-            {title}
-          </h3>
-          <p className="text-xs leading-relaxed" style={{ color: tk.cardDescColor }}>
-            {desc}
-          </p>
-        </div>
-      </div>
+        <div style={scallopStyle(tk.scallop)} />
+      </motion.div>
     </motion.div>
   );
 }
 
 function MobileLayout({ lang, tk }) {
   return (
-    <div className="flex flex-col gap-4 px-4 py-6">
-      <div className="flex justify-center mb-2">
-        <div className="flex flex-col items-center justify-center w-32 h-32 rounded-full" style={{
-          background: tk.mobileCenterBg,
-          border: "1px solid rgba(45,212,255,0.35)",
-          boxShadow: "0 0 30px rgba(45,212,255,0.18)",
-        }}>
-          <span style={{ color: "#2dd4ff", fontSize: 22, fontFamily: "monospace" }}>&lt;/&gt;</span>
-          <span style={{ color: tk.mobileCenterText }} className="font-bold text-sm">Fullstack</span>
-          <span style={{ color: "#2dd4ff" }} className="font-bold text-sm">Developer</span>
-        </div>
-      </div>
-
+    <div className="flex flex-col gap-4 px-4 py-6 relative">
+      <div className="absolute left-6 top-0 bottom-0 w-px"
+        style={{ background: `repeating-linear-gradient(to bottom, ${tk.thread} 0 6px, transparent 6px 12px)`, opacity: 0.5 }}/>
       {NODES.map((node, i) => {
         const title = lang === "fr" ? node.titleFr : node.titleEn;
-        const desc  = lang === "fr" ? node.descFr  : node.descEn;
+        const desc = lang === "fr" ? node.descFr : node.descEn;
         return (
           <motion.div key={node.id}
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-            className="rounded-2xl p-4 flex items-start gap-3"
-            style={{
-              background: tk.mobileCardBg,
-              border: `1px solid ${tk.cardBorder}`,
-              transition: "background 0.5s, border-color 0.5s",
-            }}
+            className="ml-10 relative rounded-2xl p-4 flex items-start gap-3"
+            style={{ background: tk.cardBg }}
           >
-            <div className="shrink-0"><NodeIcon type={node.icon} size={38}/></div>
+            <StitchedBorder tk={tk} delay={i * 0.12} />
+            <div className="absolute -left-[34px] top-5 w-3 h-3 rounded-full" style={{ background: tk.thread }}/>
+            <div className="shrink-0"><NodeIcon type={node.icon} size={32}/></div>
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
-                  style={{ background: "rgba(45,212,255,0.12)", color: "#2dd4ff", border: "1px solid rgba(45,212,255,0.3)" }}>
+                  style={{ background: tk.badgeBg, color: tk.badgeText, border: `1px solid ${tk.badgeBorder}` }}>
                   {node.num}
                 </span>
-                <h3 className="text-sm font-bold" style={{ color: tk.mobileCardTitle }}>{title}</h3>
+                <h3 className="text-sm font-bold" style={{ color: tk.cardTitleColor }}>{title}</h3>
               </div>
-              <p className="text-xs leading-relaxed" style={{ color: tk.mobileCardDesc }}>{desc}</p>
+              <p className="text-xs leading-relaxed" style={{ color: tk.cardDescColor }}>{desc}</p>
             </div>
           </motion.div>
         );
@@ -424,7 +322,6 @@ export default function Services() {
   const [hovered, setHovered] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [dashOff, setDashOff] = useState(0);
-  const rafRef = useRef();
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -434,23 +331,15 @@ export default function Services() {
   }, []);
 
   useEffect(() => {
-    let start = null;
+    let raf, start = null;
     const tick = (ts) => {
       if (!start) start = ts;
-      setDashOff(((ts - start) / 35) % 300);
-      rafRef.current = requestAnimationFrame(tick);
+      setDashOff(((ts - start) / 45) % 300);
+      raf = requestAnimationFrame(tick);
     };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
-
-  const cards = [
-    { node: NODES[0], pos: { left: "0%",  top: "17%", width: "28%", height: "22%" } },
-    { node: NODES[1], pos: { left: "72%", top: "17%", width: "28%", height: "22%" } },
-    { node: NODES[2], pos: { left: "72%", top: "53%", width: "28%", height: "22%" } },
-    { node: NODES[3], pos: { left: "0%",  top: "53%", width: "28%", height: "22%" } },
-    { node: NODES[4], pos: { left: "31%", top: "77%", width: "38%", height: "19%" } },
-  ];
 
   return (
     <section
@@ -464,56 +353,45 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            <span className="text-xs font-semibold tracking-[4px] uppercase text-blue-400">
-              {lang === "fr" ? "Mes Services" : "My Services"}
-            </span>
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </div>
-
-          <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl text-slate-800 dark:text-white">
-            {lang === "fr" ? "Une expertise complète," : "Complete expertise,"}
+          <span className="text-xs font-semibold tracking-[4px] uppercase text-blue-400">
+            {lang === "fr" ? "Mes Services" : "My Services"}
+          </span>
+          {/* Titre humanisé : phrase parlée, pas un slogan marketing générique */}
+          <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl text-slate-800 dark:text-white mt-4">
+            {lang === "fr" ? "Ce que je sais faire," : "What I actually do,"}
             <br />
             <span className="text-blue-500">
-              {lang === "fr" ? "un écosystème connecté" : "a connected ecosystem"}
+              {lang === "fr" ? "expliqué simplement" : "explained simply"}
             </span>
           </h2>
-
           <p className="mx-auto mt-2 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
             {lang === "fr"
-              ? "De l'idée au déploiement, je conçois des solutions modernes, robustes et évolutives."
-              : "From idea to deployment, I design modern, robust and scalable solutions."}
+              ? "Voici, simplement, ce que je peux construire pour toi — étape par étape."
+              : "Here's, simply, what I can build for you — step by step."}
           </p>
         </motion.div>
 
         {isMobile ? (
           <MobileLayout lang={lang} tk={tk}/>
         ) : (
-          <motion.div
-            className="relative mx-auto -mt-12"
-            style={{ maxWidth: 1000, width: "100%", aspectRatio: "1000/820" }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <ArchSVG hoveredId={hovered} lang={lang} dashOff={dashOff} tk={tk}/>
-
-            {cards.map(({ node, pos }) => (
-              <Card key={node.id} node={node} lang={lang}
-                hov={hovered === node.id}
-                onEnter={() => setHovered(node.id)}
-                onLeave={() => setHovered(null)}
-                posStyle={pos}
-                tk={tk}
-              />
-            ))}
-          </motion.div>
+          <div className="relative mt-16" style={{ height: 420 }}>
+            <StitchLine tk={tk} hoveredIdx={hovered} dashOff={dashOff}/>
+            <div className="relative z-10 flex h-full items-stretch">
+              {NODES.map((node, i) => (
+                <StepCard
+                  key={node.id}
+                  node={node}
+                  lang={lang}
+                  idx={i}
+                  side={STEPS[i].side}
+                  hov={hovered === i}
+                  onEnter={() => setHovered(i)}
+                  onLeave={() => setHovered(null)}
+                  tk={tk}
+                />
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </section>
