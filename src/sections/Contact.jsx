@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { FaEnvelope } from "react-icons/fa";
 
 // ── Tokens terracotta (inlined pour éviter un import circulaire)
@@ -64,7 +63,7 @@ export default function Contact() {
     whatsapp: "https://wa.me/261342804260",
   };
 
-  const [chatOpen, setChatOpen] = useState(false);
+  const [chatOpen, setChatOpen] = useState(true);
   const [step, setStep] = useState("form");
   const [formData, setFormData] = useState({ pseudo: "", email: "", whatsapp: "" });
   const [errors, setErrors] = useState({});
@@ -216,57 +215,37 @@ export default function Contact() {
       className="relative min-h-screen overflow-hidden px-6 py-24 transition-colors duration-500"
       style={{ background: tk.bgPage, color: tk.textPrimary }}
     >
-      <div className="relative mx-auto max-w-7xl">
-        {/* ── Nouveau titre style barre latérale ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.3, 1] }}
-          className="flex items-start gap-4 mb-16"
-        >
-          <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{
-              width: 4,
-              height: 72,
-              background: tk.accent,
-              borderRadius: 2,
-              flexShrink: 0,
-              marginTop: 4,
-              transformOrigin: "top",
-            }}
-          />
-          <div>
-            <div className="flex items-center gap-3 mb-1.5">
-              <span
-                className="text-xs font-semibold tracking-[3px] uppercase"
-                style={{ color: tk.accent }}
-              >
-                {t("contact.subtitle")}
-              </span>
-              <span style={{ fontSize: 11, color: tk.textMuted, opacity: 0.6 }}>
-                / 06
-              </span>
-            </div>
-            <h2
-              className="font-black leading-tight"
-              style={{
-                fontSize: "clamp(22px, 4vw, 36px)",
-                color: tk.textPrimary,
-                margin: 0,
-              }}
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-16 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#c9683a" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+            <span
+              className="text-xs font-semibold tracking-[4px] uppercase"
+              style={{ color: tk.textAccent }}
             >
-              {t("contact.titleBefore")}{" "}
-              <span style={{ color: tk.accent }}>{t("contact.highlight")}</span>{" "}
-              {t("contact.titleAfter")}
-            </h2>
+              {t("contact.subtitle")}
+            </span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#c9683a" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
           </div>
-        </motion.div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <h2
+            className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl"
+            style={{ color: tk.textPrimary }}
+          >
+            {t("contact.titleBefore")}{" "}
+            <span style={{ color: tk.accent }}>{t("contact.highlight")}</span>{" "}
+            {t("contact.titleAfter")}
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg" style={{ color: tk.textMuted }}>
+            {t("contact.description")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-10">
+          {/* Colonne gauche - Infos */}
           <div className="space-y-8">
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold" style={{ color: tk.textPrimary }}>
@@ -284,7 +263,7 @@ export default function Contact() {
                   <svg className="w-6 h-6" style={{ color: tk.iconColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <a href={`tel:${phone}`} className="transition" style={{ color: tk.textSecondary }}>
+                  <a href={`tel:${phone}`} className="transition" style={{ color: tk.textSecondary, hover: { color: tk.accent } }}>
                     {phone}
                   </a>
                 </div>
@@ -331,6 +310,7 @@ export default function Contact() {
                   className="p-2 rounded-full transition-all duration-300 hover:scale-110"
                   style={{
                     background: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
+                    hover: { background: tk.socialHover },
                   }}
                 >
                   <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
@@ -380,6 +360,7 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Colonne droite - Chat */}
           <div
             className="rounded-2xl shadow-2xl overflow-hidden transition-all"
             style={{
