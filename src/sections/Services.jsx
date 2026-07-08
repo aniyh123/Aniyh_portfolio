@@ -61,27 +61,37 @@ function useTheme() {
 
 function tokens(dark) {
   return {
-    thread: dark ? "#e08a5c" : "#c9683a",
-    accent: "#2dd4ff",
+    bgPage: dark ? "#1a0e08" : "#fff8f4",
+    textPrimary: dark ? "#fde0d0" : "#3a1508",
+    textSecondary: dark ? "#f5b99a" : "#7a3618",
+    textMuted: dark ? "rgba(245,185,154,0.5)" : "rgba(122,54,24,0.55)",
+    textAccent: dark ? "#e8905e" : "#c9683a",
+    accent: "#c9683a",
+    accentLight: "#e8905e",
+    accentGlow: dark ? "rgba(201,104,58,0.25)" : "rgba(201,104,58,0.15)",
+    thread: dark ? "#e8905e" : "#c9683a",
+    threadSoft: dark ? "rgba(232,144,94,0.35)" : "rgba(201,104,58,0.35)",
     cardBg: dark
-      ? "linear-gradient(135deg,rgba(15,30,60,0.98),rgba(8,18,40,0.98))"
-      : "linear-gradient(135deg,rgba(255,255,255,0.98),rgba(240,248,255,0.98))",
+      ? "linear-gradient(135deg,rgba(42,22,10,0.98),rgba(26,14,8,0.98))"
+      : "linear-gradient(135deg,rgba(255,248,244,0.98),rgba(253,240,232,0.98))",
     cardBgHov: dark
-      ? "linear-gradient(135deg,rgba(25,50,90,0.99),rgba(15,30,70,0.99))"
-      : "linear-gradient(135deg,rgba(255,255,255,0.99),rgba(235,245,255,0.99))",
-    cardTitleColor: dark ? "rgba(255,255,255,0.9)" : "#0f172a",
-    cardTitleHov: dark ? "#ffffff" : "#0c1a2e",
-    cardDescColor: dark ? "rgba(255,255,255,0.55)" : "rgba(15,23,42,0.6)",
-    badgeBg: dark ? "rgba(5,15,40,0.98)" : "rgba(255,243,235,0.98)",
-    badgeBorder: dark ? "rgba(224,138,92,0.55)" : "rgba(201,104,58,0.55)",
-    badgeText: dark ? "#e08a5c" : "#c9683a",
-    scallop: dark ? "rgba(224,138,92,0.45)" : "rgba(201,104,58,0.5)",
+      ? "linear-gradient(135deg,rgba(58,30,12,0.99),rgba(42,22,10,0.99))"
+      : "linear-gradient(135deg,rgba(255,255,255,0.99),rgba(253,245,240,0.99))",
+    cardTitleColor: dark ? "rgba(253,224,208,0.9)" : "#3a1508",
+    cardTitleHov: dark ? "#fde0d0" : "#2a0d06",
+    cardDescColor: dark ? "rgba(245,185,154,0.55)" : "rgba(58,21,8,0.6)",
+    badgeBg: dark ? "rgba(26,14,8,0.98)" : "#fde0d0",
+    badgeBorder: dark ? "rgba(201,104,58,0.5)" : "rgba(201,104,58,0.55)",
+    badgeText: dark ? "#e8905e" : "#a04e27",
+    scallop: dark ? "rgba(201,104,58,0.45)" : "rgba(201,104,58,0.5)",
+    borderCard: dark ? "rgba(201,104,58,0.22)" : "rgba(201,104,58,0.32)",
+    borderBadge: dark ? "rgba(201,104,58,0.4)" : "rgba(201,104,58,0.5)",
   };
 }
 
 function NodeIcon({ type, size = 36 }) {
   const s = size;
-  const c = "#2dd4ff";
+  const c = "#c9683a";
   if (type === "react") return (
     <svg width={s} height={s} viewBox="0 0 44 44" fill="none">
       <circle cx="22" cy="22" r="4" fill={c}/>
@@ -166,10 +176,6 @@ function StitchLine({ tk, hoveredIdx, dashOff }) {
   );
 }
 
-// Contour de carte dessiné à la façon d'un point de crochet : un rectangle
-// arrondi tracé au trait. Le tracé est volontairement lent (2.4s) avec une
-// courbe d'accélération irrégulière pour évoquer une aiguille qui avance par
-// à-coups, point après point, plutôt qu'une barre de progression plate.
 function StitchedBorder({ tk, delay }) {
   return (
     <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none"
@@ -190,8 +196,6 @@ function StitchedBorder({ tk, delay }) {
   );
 }
 
-// Bord festonné en bas de carte façon pelote de laine : une rangée de petits
-// demi-cercles obtenue en pur CSS (repeating-radial-gradient), pas une image.
 function scallopStyle(color) {
   return {
     backgroundImage: `radial-gradient(circle at 6px 0px, transparent 5px, ${color} 5.5px, ${color} 6px, transparent 6.5px)`,
@@ -207,8 +211,6 @@ function scallopStyle(color) {
 function StepCard({ node, lang, hov, onEnter, onLeave, side, tk, idx }) {
   const title = lang === "fr" ? node.titleFr : node.titleEn;
   const desc = lang === "fr" ? node.descFr : node.descEn;
-  // Séquence beaucoup plus lente et espacée : chaque carte attend que la
-  // précédente ait fini de se tisser avant de commencer la sienne.
   const delay = idx * 0.55;
 
   return (
@@ -222,9 +224,6 @@ function StepCard({ node, lang, hov, onEnter, onLeave, side, tk, idx }) {
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      {/* Oscillation continue, légère et lente, façon léger déhanché de
-          danseuse au repos — démarre une fois la carte posée, après le
-          temps que prend le tracé de la bordure */}
       <motion.div
         className="relative w-full max-w-[210px] rounded-2xl p-4 flex flex-col items-start gap-2"
         animate={{ rotate: [0, 1.4, 0, -1.4, 0], y: [0, -2, 0, 2, 0] }}
@@ -232,7 +231,7 @@ function StepCard({ node, lang, hov, onEnter, onLeave, side, tk, idx }) {
         style={{
           background: hov ? tk.cardBgHov : tk.cardBg,
           boxShadow: hov
-            ? "0 0 20px rgba(201,104,58,0.16), 0 0 36px rgba(45,212,255,0.05)"
+            ? `0 0 20px ${tk.accentGlow}, 0 0 36px rgba(201,104,58,0.05)`
             : "0 2px 10px rgba(0,0,0,0.08)",
           transition: "box-shadow 0.3s ease, background 0.3s ease",
         }}
@@ -314,7 +313,7 @@ function MobileLayout({ lang, tk }) {
 }
 
 export default function Services() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = i18n.language === "en" ? "en" : "fr";
   const dark = useTheme();
   const tk = tokens(dark);
@@ -344,31 +343,58 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative min-h-screen overflow-hidden bg-white px-6 py-24 text-slate-900 transition-colors duration-500 dark:bg-[#020817] dark:text-white"
+      className="relative min-h-screen overflow-hidden px-6 py-24 transition-colors duration-500"
+      style={{ background: tk.bgPage, color: tk.textPrimary }}
     >
       <div className="relative mx-auto max-w-7xl">
         <motion.div
-          className="relative z-10 text-center pt-8 pb-0 px-4"
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.3, 1] }}
+          className="flex items-start gap-4 mb-16"
         >
-          <span className="text-xs font-semibold tracking-[4px] uppercase text-blue-400">
-            {lang === "fr" ? "Mes Services" : "My Services"}
-          </span>
-          {/* Titre humanisé : phrase parlée, pas un slogan marketing générique */}
-          <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl text-slate-800 dark:text-white mt-4">
-            {lang === "fr" ? "Ce que je sais faire," : "What I actually do,"}
-            <br />
-            <span className="text-blue-500">
-              {lang === "fr" ? "expliqué simplement" : "explained simply"}
-            </span>
-          </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
-            {lang === "fr"
-              ? "Voici, simplement, ce que je peux construire pour toi — étape par étape."
-              : "Here's, simply, what I can build for you — step by step."}
-          </p>
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            style={{
+              width: 4,
+              height: 72,
+              background: tk.accent,
+              borderRadius: 2,
+              flexShrink: 0,
+              marginTop: 4,
+              transformOrigin: "top",
+            }}
+          />
+          <div>
+            <div className="flex items-center gap-3 mb-1.5">
+              <span
+                className="text-xs font-semibold tracking-[3px] uppercase"
+                style={{ color: tk.accent }}
+              >
+                {lang === "fr" ? "Mes Services" : "My Services"}
+              </span>
+              <span style={{ fontSize: 11, color: tk.textMuted, opacity: 0.6 }}>
+                / 03
+              </span>
+            </div>
+            <h2
+              className="font-black leading-tight"
+              style={{
+                fontSize: "clamp(22px, 4vw, 36px)",
+                color: tk.textPrimary,
+                margin: 0,
+              }}
+            >
+              {lang === "fr" ? "Ce que je sais faire," : "What I actually do,"}{" "}
+              <span style={{ color: tk.accent }}>
+                {lang === "fr" ? "expliqué simplement" : "explained simply"}
+              </span>
+            </h2>
+          </div>
         </motion.div>
 
         {isMobile ? (

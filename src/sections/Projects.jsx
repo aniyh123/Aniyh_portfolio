@@ -38,6 +38,50 @@ import vitimaster8 from "../assets/vitimaster8.png";
 
 import portfolio from "../assets/portfolio.png";
 
+function useTheme() {
+  const [dark, setDark] = useState(() =>
+    document.documentElement.classList.contains("dark")
+  );
+  useEffect(() => {
+    const obs = new MutationObserver(() =>
+      setDark(document.documentElement.classList.contains("dark"))
+    );
+    obs.observe(document.documentElement, { attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+  return dark;
+}
+
+function getTokens(dark) {
+  return {
+    bgPage: dark ? "#1a0e08" : "#fff8f4",
+    bgCard: dark ? "rgba(42,22,10,0.98)" : "rgba(255,248,244,0.98)",
+    bgCardHov: dark ? "linear-gradient(135deg,rgba(58,30,12,0.99),rgba(42,22,10,0.99))"
+                    : "linear-gradient(135deg,rgba(255,255,255,0.99),rgba(253,245,240,0.99))",
+    textPrimary: dark ? "#fde0d0" : "#3a1508",
+    textSecondary: dark ? "#f5b99a" : "#7a3618",
+    textMuted: dark ? "rgba(245,185,154,0.5)" : "rgba(122,54,24,0.55)",
+    textAccent: dark ? "#e8905e" : "#c9683a",
+    accent: "#c9683a",
+    accentLight: "#e8905e",
+    accentGlow: dark ? "rgba(201,104,58,0.25)" : "rgba(201,104,58,0.15)",
+    borderCard: dark ? "rgba(201,104,58,0.22)" : "rgba(201,104,58,0.32)",
+    borderCardHov: dark ? "rgba(201,104,58,0.6)" : "rgba(201,104,58,0.75)",
+    shadowCard: dark ? "0 4px 24px rgba(0,0,0,0.4)" : "0 4px 16px rgba(122,54,24,0.08)",
+    shadowCardHov: dark ? "0 0 24px rgba(201,104,58,0.18),0 8px 32px rgba(0,0,0,0.5)"
+                        : "0 0 20px rgba(201,104,58,0.14),0 8px 24px rgba(122,54,24,0.12)",
+    badgeBg: dark ? "rgba(201,104,58,0.15)" : "#fde0d0",
+    badgeBorder: dark ? "rgba(201,104,58,0.4)" : "rgba(201,104,58,0.5)",
+    badgeText: dark ? "#e8905e" : "#a04e27",
+    borderPage: dark ? "rgba(201,104,58,0.18)" : "rgba(201,104,58,0.25)",
+    modalBg: dark ? "#1a0e08" : "#fff8f4",
+    modalOverlay: "rgba(0,0,0,0.8)",
+    techBg: dark ? "rgba(201,104,58,0.12)" : "rgba(201,104,58,0.08)",
+    techText: dark ? "#e8905e" : "#c9683a",
+    featureDot: "#c9683a",
+  };
+}
+
 const projectsData = [
   {
     id: "motos",
@@ -127,6 +171,8 @@ const projectsData = [
 
 function ProjectModal({ project, onClose }) {
   const { t } = useTranslation();
+  const dark = useTheme();
+  const tk = getTokens(dark);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
@@ -149,7 +195,8 @@ function ProjectModal({ project, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md"
+      style={{ background: tk.modalOverlay }}
       onClick={onClose}
     >
       <motion.div
@@ -157,7 +204,8 @@ function ProjectModal({ project, onClose }) {
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.9, opacity: 0, y: 50 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="relative max-w-4xl w-full max-h-[85vh] overflow-y-auto rounded-2xl bg-white dark:bg-[#0f172a] shadow-2xl"
+        className="relative max-w-4xl w-full max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl"
+        style={{ background: tk.modalBg }}
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -213,28 +261,31 @@ function ProjectModal({ project, onClose }) {
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
                   className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === currentSlide ? "w-6 bg-blue-500" : "w-1.5 bg-white/50"
+                    idx === currentSlide ? "w-6" : "w-1.5"
                   }`}
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    background: idx === currentSlide ? tk.accent : "rgba(255,255,255,0.5)",
+                    cursor: "pointer"
+                  }}
                 />
               ))}
             </div>
           </div>
         </div>
     
-        <div className="p-6 md:p-8">
-          <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+        <div className="p-6 md:p-8" style={{ color: tk.textPrimary }}>
+          <p className="mb-6 leading-relaxed" style={{ color: tk.textSecondary }}>
             {t(project.longDescKey || project.descKey)}
           </p>
 
           <div className="mb-6">
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-blue-500 mb-3 flex items-center gap-2">
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-3 flex items-center gap-2" style={{ color: tk.textAccent }}>
               <FaRocket size={14} /> {t("projects.features_title")}
             </h4>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {project.featuresKeys.map((featureKey, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                <li key={idx} className="flex items-center gap-2 text-sm" style={{ color: tk.textSecondary }}>
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: tk.featureDot }} />
                   {t(featureKey)}
                 </li>
               ))}
@@ -242,14 +293,18 @@ function ProjectModal({ project, onClose }) {
           </div>
 
           <div className="mb-8">
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-blue-500 mb-3 flex items-center gap-2">
+            <h4 className="text-sm font-semibold uppercase tracking-wide mb-3 flex items-center gap-2" style={{ color: tk.textAccent }}>
               <FaCode size={14} /> {t("projects.tech_title")}
             </h4>
             <div className="flex flex-wrap gap-2">
               {project.techs.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 text-sm font-medium"
+                  className="px-3 py-1.5 rounded-lg text-sm font-medium"
+                  style={{
+                    background: tk.techBg,
+                    color: tk.techText,
+                  }}
                 >
                   {tech}
                 </span>
@@ -261,8 +316,11 @@ function ProjectModal({ project, onClose }) {
             {project.githubFrontend && (
               <button
                 onClick={() => window.open(project.githubFrontend, "_blank")}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
-                style={{ cursor: "pointer" }}
+                className="px-8 py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{
+                  background: "linear-gradient(to right, #a04e27, #c9683a)",
+                  cursor: "pointer"
+                }}
               >
                 <FaGithub /> {t("projects.github_frontend_button", "Frontend")}
               </button>
@@ -270,8 +328,11 @@ function ProjectModal({ project, onClose }) {
             {project.githubBackend && (
               <button
                 onClick={() => window.open(project.githubBackend, "_blank")}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
-                style={{ cursor: "pointer" }}
+                className="px-8 py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{
+                  background: "linear-gradient(to right, #a04e27, #c9683a)",
+                  cursor: "pointer"
+                }}
               >
                 <FaGithub /> {t("projects.github_backend_button", "Backend")}
               </button>
@@ -279,8 +340,11 @@ function ProjectModal({ project, onClose }) {
             {!project.githubFrontend && !project.githubBackend && project.github && (
               <button
                 onClick={() => window.open(project.github, "_blank")}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
-                style={{ cursor: "pointer" }}
+                className="px-8 py-3 rounded-xl text-white font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                style={{
+                  background: "linear-gradient(to right, #a04e27, #c9683a)",
+                  cursor: "pointer"
+                }}
               >
                 <FaGithub /> {t("projects.github_button")}
               </button>
@@ -294,6 +358,8 @@ function ProjectModal({ project, onClose }) {
 
 function ProjectCard({ project, index, onOpen }) {
   const { t } = useTranslation();
+  const dark = useTheme();
+  const tk = getTokens(dark);
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState(0);
 
   useEffect(() => {
@@ -318,7 +384,14 @@ function ProjectCard({ project, index, onOpen }) {
         whileHover={{ y: -8 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl">
+        <div
+          className="relative overflow-hidden rounded-2xl backdrop-blur-lg shadow-xl transition-all duration-300"
+          style={{
+            background: tk.bgCard,
+            border: `1px solid ${tk.borderCard}`,
+            boxShadow: tk.shadowCard,
+          }}
+        >
           <div className="relative h-56 overflow-hidden">
             <motion.img
               key={currentScreenshotIndex}
@@ -344,15 +417,21 @@ function ProjectCard({ project, index, onOpen }) {
                   <div
                     key={idx}
                     className={`h-1 rounded-full transition-all duration-300 ${
-                      idx === currentScreenshotIndex ? "w-4 bg-blue-500" : "w-1 bg-white/50"
+                      idx === currentScreenshotIndex ? "w-4" : "w-1"
                     }`}
+                    style={{
+                      background: idx === currentScreenshotIndex ? tk.accent : "rgba(255,255,255,0.5)",
+                    }}
                   />
                 ))}
               </div>
             )}
 
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="bg-white/10 backdrop-blur-md rounded-full px-4 py-2 text-white text-sm font-semibold flex items-center gap-2">
+              <div
+                className="backdrop-blur-md rounded-full px-4 py-2 text-white text-sm font-semibold flex items-center gap-2"
+                style={{ background: `${tk.accent}33` }}
+              >
                 <FaArrowRight size={14} />
                 {t("projects.view_details")}
               </div>
@@ -360,10 +439,10 @@ function ProjectCard({ project, index, onOpen }) {
           </div>
 
           <div className="p-5">
-            <h3 className="text-xl font-bold mb-2 text-black dark:text-white line-clamp-1">
+            <h3 className="text-xl font-bold mb-2 line-clamp-1" style={{ color: tk.textPrimary }}>
               {t(project.titleKey)}
             </h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+            <p className="text-sm mb-4 line-clamp-2" style={{ color: tk.textMuted }}>
               {t(project.descKey)}
             </p>
             
@@ -371,20 +450,29 @@ function ProjectCard({ project, index, onOpen }) {
               {project.techs.slice(0, 3).map((tech, idx) => (
                 <span
                   key={idx}
-                  className="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-500"
+                  className="text-xs px-2 py-1 rounded-full"
+                  style={{
+                    background: tk.techBg,
+                    color: tk.techText,
+                  }}
                 >
                   {tech}
                 </span>
               ))}
               {project.techs.length > 3 && (
-                <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-white/70">
+                <span className="text-xs px-2 py-1 rounded-full" style={{ color: tk.textMuted }}>
                   +{project.techs.length - 3}
                 </span>
               )}
             </div>
           </div>
 
-          <div className="absolute inset-0 rounded-2xl border-2 border-blue-500/0 group-hover:border-blue-500/50 transition-all duration-300 pointer-events-none" />
+          <div
+            className="absolute inset-0 rounded-2xl border-2 transition-all duration-300 pointer-events-none"
+            style={{
+              borderColor: "transparent",
+            }}
+          />
         </div>
       </motion.div>
     </motion.div>
@@ -393,33 +481,67 @@ function ProjectCard({ project, index, onOpen }) {
 
 export default function Projects() {
   const { t } = useTranslation();
+  const dark = useTheme();
+  const tk = getTokens(dark);
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <section
       id="projects"
-      className="relative min-h-screen overflow-hidden bg-white px-6 py-24 text-slate-900 transition-colors duration-500 dark:bg-[#020817] dark:text-white"
+      className="relative min-h-screen overflow-hidden px-6 py-24 transition-colors duration-500"
+      style={{ background: tk.bgPage, color: tk.textPrimary }}
     >
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            <span className="text-xs font-semibold tracking-[4px] uppercase text-blue-400">
-              {t("projects.subtitle")}
-            </span>
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h3M10 7h3M7 1v3M7 10v3" stroke="#2dd4ff" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
+        {/* ── Nouveau titre style barre latérale ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.3, 1] }}
+          className="flex items-start gap-4 mb-16"
+        >
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            style={{
+              width: 4,
+              height: 72,
+              background: tk.accent,
+              borderRadius: 2,
+              flexShrink: 0,
+              marginTop: 4,
+              transformOrigin: "top",
+            }}
+          />
+          <div>
+            <div className="flex items-center gap-3 mb-1.5">
+              <span
+                className="text-xs font-semibold tracking-[3px] uppercase"
+                style={{ color: tk.accent }}
+              >
+                {t("projects.subtitle")}
+              </span>
+              <span style={{ fontSize: 11, color: tk.textMuted, opacity: 0.6 }}>
+                / 04
+              </span>
+            </div>
+            <h2
+              className="font-black leading-tight"
+              style={{
+                fontSize: "clamp(22px, 4vw, 36px)",
+                color: tk.textPrimary,
+                margin: 0,
+              }}
+            >
+              {t("projects.titleBefore")}{" "}
+              <span style={{ color: tk.accent }}>{t("projects.highlight")}</span>{" "}
+              {t("projects.titleAfter")}
+            </h2>
           </div>
-          <h2 className="mx-auto max-w-2xl text-2xl font-black leading-tight md:text-4xl text-slate-800 dark:text-white">
-            {t("projects.titleBefore")} <span className="text-blue-500">{t("projects.highlight")}</span> {t("projects.titleAfter")}
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
-            {t("projects.description")}
-          </p>
-        </div>
+        </motion.div>
+
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projectsData.map((project, index) => (
